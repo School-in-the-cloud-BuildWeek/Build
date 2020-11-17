@@ -5,7 +5,7 @@ import Logo from '../assets/Group.svg'
 
 // Styling
     const Page = styled.div`
-        background-color: #F4F4F4;
+        background-color: #FFFFFF;
         width:100%;
         height:100vh;
         display: flex;
@@ -62,6 +62,7 @@ import Logo from '../assets/Group.svg'
         height: 25px;
         font-size: 10px;
         border:none;
+        padding-left:3%;
     `
 
     const Label = styled.label`
@@ -91,6 +92,11 @@ import Logo from '../assets/Group.svg'
         width: 350px;
         height: 400px;
     `
+
+    const StyledAnchor = styled.a`
+    color: #2A7DE1;
+    text-decoration:none;
+`
 // Styling
 
 
@@ -198,7 +204,7 @@ const SignUp = () => {
                         </StyledUserType>
                         {errors.userType && <Errors>Are you a student or volunteer?</Errors>}
                         <Button type="submit">Sign Up</Button>
-                        <FooterText>Already have an account? <a href = '#'>Login</a></FooterText>
+                        <FooterText>Already have an account? <StyledAnchor href = '#'>Log in</StyledAnchor></FooterText>
                         </StyledForm>
                         </FormDiv>
         </Page>

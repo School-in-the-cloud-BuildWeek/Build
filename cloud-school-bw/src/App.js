@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import styled from 'styled-components'
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 // import './App.css';
+import SignUp from './components/SignUp'
+import Login from './components/Login'
 
 const Container = styled.div`
   width: 100vw;
@@ -190,6 +192,9 @@ function App() {
           </div>
           <div className="logout">
             <Link className="log-out" to="">Log Out</Link>
+          </div>
+          <div>
+             <SignUp/>
           </div>
         </div>
       </div>

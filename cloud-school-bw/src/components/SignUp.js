@@ -1,16 +1,16 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
+import Logo from '../assets/Group.svg'
 
 // Styling
     const Page = styled.div`
-        background-color: #E5E5E5;
+        background-color: #F4F4F4;
         width:100%;
         height:100vh;
         display: flex;
-        justify-content:center;
-        align-items: center;
-    `;
+        flex-flow: column wrap;    
+    `
 
     const StyledHeader = styled.h1`
         font-size: 1.2rem;
@@ -19,7 +19,7 @@ import styled from 'styled-components';
     `;
 
     const StyledForm = styled.form`
-        background-color: white;
+       background-color: white;
         display:flex;
         flex-direction:column;
         align-items:center;
@@ -31,28 +31,27 @@ import styled from 'styled-components';
         justify-content:space-between;
         padding-top: 2%;
         padding-bottom:2%;
-        
     `;
     const StyledUserType = styled.div`
-    display:flex;
-    flex-direction:row;
-    font-size: 1rem;
-    margin-right:42%;
+        display:flex;
+        flex-direction:row;
+        font-size: 1rem;
+        margin-right:42%;
     `;
 
     const Button = styled.button`
-    background-color: #2A7DE1;
-    color: white;
-    width:75%;
-    border-radius: 100px;
-    border: none;
-    height: 26px;
+        background-color: #2A7DE1;
+        color: white;
+        width:75%;
+        border-radius: 100px;
+        border: none;
+        height: 26px;
     `;
 
     const FooterText = styled.p`
-    color: #BDC4C9;
-    font-size:0.6rem;
-    margin-left:40%;
+        color: #BDC4C9;
+        font-size:0.6rem;
+        margin-left:40%;
     `;
 
     const StyledInput = styled.input`
@@ -79,7 +78,19 @@ import styled from 'styled-components';
         text-align:left;
         width:75%;
     `
-
+    const ImgLogo = styled.img`
+        width:120px;
+        margin-top:2%;
+        
+    `
+    const ImgDiv = styled.div `
+        
+    `
+    const FormDiv = styled.div`
+        margin: auto auto;
+        width: 350px;
+        height: 400px;
+    `
 // Styling
 
 
@@ -93,16 +104,20 @@ const SignUp = () => {
         setValue("name", "");
         setValue("email", "");
         setValue("phoneNumber", "");
-        setValue("password", "");
+        setValue("password", "")
+        setValue("confirmPassword", "");
         setValue("userType", "");
-        data.name = data.name.trim();
-        data.email = data.email.trim();
-        data.password = data.password.trim();
-    }
+        // data.name = data.name.trim();
+        // data.email = data.email.trim();
+        // data.password = data.password.trim();
+    } 
 
     return (
         <Page>
-           <img src = '/Users/juanruiz/Desktop/LambdaSchool/Web37/Unit2/Build-Week2/front-end/cloud-school-bw/src/assets/logo.png' alt = 'logo'/>
+            <ImgDiv>
+           <ImgLogo src = {Logo} alt = 'logo'/>
+           </ImgDiv>
+           <FormDiv>
                <StyledForm onSubmit = {handleSubmit(onSubmit)}>
                <StyledHeader>Sign Up</StyledHeader>
                     <StyledInput 
@@ -137,7 +152,7 @@ const SignUp = () => {
 
 
                         <StyledInput 
-                        type="password;"
+                        type="password"
                         name="password"
                         placeholder = 'Password'
                         ref={register({
@@ -183,10 +198,9 @@ const SignUp = () => {
                         </StyledUserType>
                         {errors.userType && <Errors>Are you a student or volunteer?</Errors>}
                         <Button type="submit">Sign Up</Button>
-                        <FooterText>Already have an account? Log in</FooterText>
+                        <FooterText>Already have an account? <a href = '#'>Login</a></FooterText>
                         </StyledForm>
-                       
-                      
+                        </FormDiv>
         </Page>
     )
 }

@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import styled from 'styled-components'
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import AdminDash from './components/AdminDash';
+
 
 const Container = styled.div`
   width: 100vw;
@@ -12,9 +13,9 @@ const Container = styled.div`
   margin: 0;
   padding: 0;
   
-  /* *{
+  *{
     border: 1px blue solid;
-  } */
+  }
   .App-header{
     width: 100%;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -166,6 +167,7 @@ const Container = styled.div`
 `
 
 function App() {
+
   return (
     <Container>
       <div className="App">
@@ -178,20 +180,17 @@ function App() {
             <img className="profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
           </div>
         </header>
-        <div className="side-container">
-          <div className="large-profile">
-            <img className="lg-profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
-          </div>
-          <div className="side-nav">
-            <Link className="link" to="">Add User</Link>
-            <Link className="link" to="">Add Training</Link>
-            <Link className="link" to="">Library</Link>
-            <Link className="link" to="">Help</Link>
-          </div>
-          <div className="logout">
-            <Link className="log-out" to="">Log Out</Link>
-          </div>
-        </div>
+        
+        <Switch>
+          <Route path="/admin" component={AdminDash}>
+          </Route>
+          {/* <Route path= "/volunteerDash" component={VolunteerDash}>
+            
+          </Route> 
+          <Route path= "/studentDash" component={StudentDash}>
+        
+          </Route> */}
+        </Switch>
       </div>
     </Container>
   );

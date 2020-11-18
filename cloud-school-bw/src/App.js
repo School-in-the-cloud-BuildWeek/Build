@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import styled from 'styled-components'
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import AdminDash from './components/AdminDash';
+import { Link, Route, Switch } from 'react-router-dom';
+import SignUp from './components/SignUp'
+import Login from './components/Login'
 
 
 const Container = styled.div`
@@ -180,7 +182,6 @@ function App() {
             <img className="profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
           </div>
         </header>
-        
         <Switch>
           <Route path="/admin" component={AdminDash}>
           </Route>
@@ -189,8 +190,10 @@ function App() {
           </Route> 
           <Route path= "/studentDash" component={StudentDash}>
         
-          </Route> */}
+          </Route  */}
+            <SignUp/>>
         </Switch>
+
       </div>
     </Container>
   );

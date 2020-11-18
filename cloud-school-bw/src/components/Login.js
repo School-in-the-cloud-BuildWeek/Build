@@ -5,7 +5,7 @@ import Logo from '../assets/Group.svg'
 
 // Styling
 const Page = styled.div`
-background-color: #F4F4F4;
+background-color: #FFFFFF;
 width:100%;
 height:100vh;
 display: flex;

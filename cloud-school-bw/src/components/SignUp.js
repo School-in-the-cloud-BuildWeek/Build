@@ -2,6 +2,8 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import Login from './Login';
 
 // Styling
     const Page = styled.div`
@@ -204,7 +206,13 @@ const SignUp = () => {
                         </StyledUserType>
                         {errors.userType && <Errors>Are you a student or volunteer?</Errors>}
                         <Button type="submit">Sign Up</Button>
-                        <FooterText>Already have an account? <StyledAnchor href = '#'>Log in</StyledAnchor></FooterText>
+                        
+                            <FooterText>Already have an account?
+                                <Link to = '/login'>Log in</Link>
+                             </FooterText>
+                       
+
+                          
                         </StyledForm>
                         </FormDiv>
         </Page>

@@ -34,12 +34,12 @@ justify-content:space-between;
 padding-top: 2%;
 padding-bottom:2%;
 `;
-const StyledUserType = styled.div`
-display:flex;
-flex-direction:row;
-font-size: 1rem;
-margin-right:42%;
-`;
+// const StyledUserType = styled.div`
+// display:flex;
+// flex-direction:row;
+// font-size: 1rem;
+// margin-right:42%;
+// `;
 
 const Button = styled.button`
 background-color: #2A7DE1;
@@ -50,11 +50,11 @@ border: none;
 height: 26px;
 `;
 
-const FooterText = styled.p`
-color: #BDC4C9;
-font-size:0.6rem;
-margin-left:40%;
-`;
+// const FooterText = styled.p`
+// color: #BDC4C9;
+// font-size:0.6rem;
+// margin-left:40%;
+// `;
 
 const StyledInput = styled.input`
 background-color: #F4F6F7;
@@ -67,13 +67,13 @@ border:none;
 padding-left:3%;
 `
 
-const Label = styled.label`
-font-size: 0.8rem;
-`
-const RadioButtons = styled.input`
-width:6px;
-height:8px;
-`
+// const Label = styled.label`
+// font-size: 0.8rem;
+// `
+// const RadioButtons = styled.input`
+// width:6px;
+// height:8px;
+// `
 
 const Errors = styled.span`
 color:red;
@@ -153,7 +153,7 @@ return (
                 {errors.password && <Errors>Please enter your password</Errors>}
 
                 <Button type="submit">Log in</Button>
-                <Link to = {routeToSignUp}>Sign Up</Link><span> | Forgot Password</span>
+                <Link to="/sign-up" >Sign Up</Link><span>| Forgot Password</span>
                 </StyledForm>
                 </FormDiv>
 </Page>

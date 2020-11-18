@@ -2,8 +2,8 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
-import { Link, useHistory} from 'react-router-dom';
-import Login from './Login';
+import { Link } from 'react-router-dom';
+
 
 // Styling
     const Page = styled.div`
@@ -101,11 +101,16 @@ import Login from './Login';
         height: 400px;
     `
 
+//     const StyledAnchor = styled.a`
+//     color: #2A7DE1;
+//     text-decoration:none;
+// `
+
     const LogoDiv = styled.div`
         width: 100%;
     `
-// Styling
 
+// Styling
 
 
 const SignUp = () => {
@@ -220,7 +225,7 @@ const SignUp = () => {
                         <Button type="submit">Sign Up</Button>
                         
                             <FooterText>Already have an account?
-                                <Link to = {routeToLogin}> Log in</Link>
+                                <Link to ="/">Log in</Link>
                              </FooterText>
                         </StyledForm>
                         </FormDiv>

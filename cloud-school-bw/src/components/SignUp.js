@@ -232,5 +232,4 @@ const SignUp = () => {
         </Page>
     )
 }
-
 export default SignUp

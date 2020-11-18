@@ -6,34 +6,26 @@ const StudentTable= styled.div`
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
     font-family: 'Lato', sans-serif;
     background: #FAFAFB;
-    padding-bottom: 2rem;
     
     .student-list{
         display: flex;
-        width: 100%;
+        width: 97%;
         flex-direction: column;
         flex-wrap: wrap; 
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-        
+        margin: .3rem;
     }
 
     h2{
         color: #2A7DE1;
         align-self: center;
     }
-    table{
+    .table{
         border-collapse: collapse;
-        display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        width: 95%;
-        padding: .5rem;
-        justify-content: space-between;
-        align-self: center;
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     thead{
@@ -41,63 +33,41 @@ const StudentTable= styled.div`
     }
 
     tr.border-bottom td{
-        border-bottom: 1pt solid #F4F6F7;
-        font-size: 1rem;
-        padding-right: .5rem;
-        align-content: space-between;
-        max-height: 30px; 
-        max-width: 120px !important;
+        border-bottom: 3px solid #F4F6F7;
+        border-top: none;
     }
 
     tr.border-bottom th{
-        border-bottom: 1pt solid #F4F6F7;
-        flex-flow: nowrap;
-        justify-content: space-between;
+        border-bottom: 3px solid #F4F6F7;
     }
-    .two{
-        padding-right: 1.7rem;
-        padding-left: 4.5rem;
-    }
-    .three{
-        padding-right: 3rem;
-    }
+
     @media (min-width: 768px){
         position: absolute;
-        margin-top: 12rem;
+        margin-top: 9.5rem;
         margin-left: 16rem; 
-        width: 60%;
+        width: 65%;
+        max-height: 668px;
+        .student-list{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        h2{
+            width: 100%;
+            text-align: center;
+            font-size: 1.8rem;
+        }
   }
-  @media (min-width: 1024px){
+   @media (min-width: 1024px){
         width: 72%;
+        margin-top: 10.5rem;
+        max-height: 800px;
+        .student-list{
+        width: 99%;
 
-        table{
-        width: 100%;
-        font-size: 1.5rem;
-        height: fit-content;
-        display: flex;
-    }
-
-    tr.border-bottom td{
-        font-size: 1.2rem;
-        max-height: 200px; 
-        max-width: 1000px !important;
-        line-height: 2;
-    }
-
-    tr.border-bottom th{
-        border-bottom: 1pt solid #F4F6F7;
-        flex-flow: nowrap;
-    }
-    .two{
-        padding-right: 2rem;
-        padding-left: 6rem;
-    }
-    .three{
-        padding-right: 3rem;
-    }
-    tbody{
-        width: 100%;
-    }
+    } 
+   
     }
 `
 const Error= styled.div`
@@ -138,18 +108,21 @@ const StudentList = (props) => {
         <StudentTable>
         <div className="student-list">
             <h2>Students</h2>
-            <table>
+            <div class="table-responsive text-nowrap">
+            <table className="table table-hover">
                 <thead>
                     <tr className="border-bottom">
-                        <th className="one">Name</th>
-                        <th className="two">Email</th>
-                        <th className="three">Phone</th>
-                        <th className="four">Country</th>
+                        <th scope='col' className="one">Name</th>
+                        <th scope='col' className="two">Email</th>
+                        <th scope='col' className="three">Phone</th>
+                        <th scope='col' className="four">Country</th>
+                        <th scope='col' className="five"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {students.map(vol => (
                         <tr className="border-bottom" key={vol.cell}>
+
                             <td>{vol.name.first} {vol.name.last}</td>
                             <td>
                                 <button>EMail</button>
@@ -165,6 +138,7 @@ const StudentList = (props) => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     </StudentTable>
     )

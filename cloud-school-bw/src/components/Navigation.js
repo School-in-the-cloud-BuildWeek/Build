@@ -39,6 +39,7 @@ const Container = styled.div`
     width: 264px;
   }
 
+  
   .profilePic{
     width: 55px;
     height:55px;
@@ -60,10 +61,14 @@ const Container = styled.div`
     font-family: 'Lato', sans-serif;
     background-color: #D9EAFF;
     border-radius: 10px;
-    width: 4.5rem;
+    width: 5.5rem;
     padding: .4rem;
+    box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
   }
-
+    .dash{
+        color:#D9EAFF;
+        background-color: #2A7DE1;
+    }
   .logout{
     width: 100%;
     padding-bottom: 1rem;
@@ -77,6 +82,7 @@ const Container = styled.div`
     color:#2A7DE1;
     font-family: 'Lato', sans-serif;
     text-decoration: none;
+    margin-top: 4rem;
   }
   
   .lg-profilePic{
@@ -84,12 +90,13 @@ const Container = styled.div`
   }
 
   @media (min-width: 768px){
-      /* height: 100vh; */
+
   .App-header{
     display: flex;
     justify-content: space-between;
     align-content: center;
     flex-wrap: nowrap;
+    padding-top: .3rem;
   }
 
   .logo{
@@ -136,6 +143,7 @@ const Container = styled.div`
 
   .logout{
     width: 100%;
+    
   }
 
   .log-out{
@@ -144,11 +152,24 @@ const Container = styled.div`
     justify-content: center;
     align-content: flex-end;
     padding: .5rem;
+    margin-top: .5rem;
+  }
+  hr{
+      border: 1px solid #2A7DE1;
+      width: 60%;
   }
 }
 
   @media (min-width: 1024px){
-  
+    .side-nav{
+    height:69vh;
+  }
+  .log-out{
+    margin-top: 0rem;
+  }
+  .side-nav{
+    height:64vh;
+  }
   }
 `
 const Navigation = () => {
@@ -176,6 +197,10 @@ const Navigation = () => {
                 <Link className="link" to="" >Library</Link>
                 {/* empty link right now, add to= when ready*/}
                 <Link className="link" to="">Help</Link>
+                <hr></hr>
+                <Link className="link dash" to="/VolunteerDash">Volunteer Dashboard</Link>
+                <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
+                
             </div>
             <div className="logout">
                 {/* link to logout user */}

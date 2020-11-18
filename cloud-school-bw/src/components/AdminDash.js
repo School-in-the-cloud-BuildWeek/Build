@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink, Link } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import VolunteerList from './VolunteerList';
 import StudentList from './StudentList';
 import styled from 'styled-components'
@@ -14,9 +14,6 @@ const AdminContainer = styled.div`
         border: 1px red solid;
     } */
     .user-wrapper{
-        /* display: flex;
-        flex-direction: column;
-        flex-wrap: wrap; */
         background: #E5E5E5;
         width: 100%;
     }
@@ -26,6 +23,7 @@ const AdminContainer = styled.div`
         font-family: 'Lato', sans-serif;
         justify-content: center;
         font-size: 1.4rem;
+        text-align: center;
     }
 
     .tab1{
@@ -35,7 +33,7 @@ const AdminContainer = styled.div`
         color: #D9EAFF;
         border-radius: 10px 10px 0px 0px;
         box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
-        width: 6rem;
+        width: 11rem;
         text-decoration: none;
         margin: 0 .3rem;
     }
@@ -54,7 +52,7 @@ const AdminContainer = styled.div`
          color: #2A7DE1;
          border-radius: 10px 10px 0px 0px;
          box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
-         width: 6rem;
+         width: 11rem;
          text-decoration: none;
      }
      .tab2:hover {
@@ -71,31 +69,25 @@ const AdminContainer = styled.div`
             display: flex;
             flex-direction: row;
         }
-        
         .nav-tabs{
         position: absolute;
-        margin-top: 8rem;
+        margin-top: 6.5rem;
         width: 60%;
         margin-left: 15rem;
-        }   
+        }  
+        .tab1{
+        padding: .5rem 2.5rem; 
+        }
+        .tab2{
+        padding: .5rem 2.5rem; 
+        }
     }
-`
-const DashLinks= styled.div`
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    margin-top: 48rem;
-    font-size: 1.2rem;
-    text-align: center;
-     .dash{
-         text-decoration: none;
-         color: #2A7DE1;
-         font-family: 'Lato', sans-serif;
-         padding: .5rem 1.5rem;
-         
-     }
-
-
+    @media (min-width: 1024px){
+        .nav-tabs{
+        position: absolute;
+        margin-top: 7.5rem;
+        }  
+    }
 `
 
 const AdminDash = (props) => {
@@ -115,10 +107,6 @@ const AdminDash = (props) => {
                 <Route path="/admin/volunteers" component={VolunteerList} />
                 <Route path="/admin/students" component={StudentList} />
             </div>
-            <DashLinks className="dash-links">
-                <Link className="dash" to="/VolunteerDash">Volunteer Dashboard</Link>
-                <Link className="dash" to="/StudentDash">Student Dashboard</Link>
-            </DashLinks>
     </AdminContainer>
     )
 }

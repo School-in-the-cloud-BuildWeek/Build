@@ -29,28 +29,39 @@ const Container = styled.div`
     justify-content: flex-end;
     margin: 1rem;
   }
-
-  .input-field{
-    background-color: #F4F6F7;
-    border-color: white;
-    height: 2rem;
-    margin-top: .5rem;
-    margin-right: 1rem;
-    width: 264px;
+  .form-inline{
+      display: flex;
+      justify-self: center;
+      align-self: center;
   }
+    .form-control{
+    background-color: #F4F6F7;
+    width: 10rem;
+    margin-left: .5rem;
+    }
 
+    .btn{
+        border-color: #2A7DE1;
+        color: #2A7DE1;
+        background-color: #D9EAFF;
+        margin-right: .5rem;
+        margin-left: .5rem;
+    }
   
   .profilePic{
     width: 55px;
     height:55px;
     border-radius: 50px 50px;
     border: 2px solid #2A7DE1;
+    align-self: center;
   }
 
   .side-nav{
     display: flex;
-    justify-content: space-between;
-    margin: .8rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
     font-size: .8rem;
     text-align: center;
   }
@@ -64,11 +75,19 @@ const Container = styled.div`
     width: 5.5rem;
     padding: .4rem;
     box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
+    margin: .5rem .3rem;
+
+  }
+  .add-links{
+    display: flex;
+    flex-direction: row;
   }
     .dash{
-        color:#D9EAFF;
-        background-color: #2A7DE1;
+    color:#D9EAFF;
+    background-color: #2A7DE1;
+    width: 10rem;
     }
+
   .logout{
     width: 100%;
     padding-bottom: 1rem;
@@ -82,7 +101,7 @@ const Container = styled.div`
     color:#2A7DE1;
     font-family: 'Lato', sans-serif;
     text-decoration: none;
-    margin-top: 4rem;
+    margin-top: 1rem;
   }
   
   .lg-profilePic{
@@ -109,6 +128,11 @@ const Container = styled.div`
     margin-top: .5rem;
     padding-top: 1px;
   }
+  .form-control{
+    background-color: #F4F6F7;
+    width: 15rem;
+    margin-left: .5rem;
+    }
 
   .lg-profilePic{
     display: flex;
@@ -122,24 +146,41 @@ const Container = styled.div`
   .side-container{
     max-width: 14.5rem;
     background: #F4F6F7;
+    /* height: 80vh; */
   }
-
   .side-nav{
-    margin: 0;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     font-size: 1rem;
-    width: 100%;
-    justify-content: flex-start;
-    height:60vh;
+    align-content: center;
+    justify-content: center;
   }
 
   .link{
-    align-self: flex-start;
-    width: 80%;
+    width: 5.5rem;
+    padding: .4rem;
+    box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
+    margin: .3rem .3rem;
+    /* width: 80%; */
     padding: .5rem;
-    margin: 1rem;
+    
   }
+
+  .add-links{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .add{
+      width: 80%;
+  }
+  .dash-link{
+      width:100%;
+  }
+  .dash{
+    width: 80%;
+    }
 
   .logout{
     width: 100%;
@@ -152,7 +193,7 @@ const Container = styled.div`
     justify-content: center;
     align-content: flex-end;
     padding: .5rem;
-    margin-top: .5rem;
+    margin-top: 9.5rem;
   }
   hr{
       border: 1px solid #2A7DE1;
@@ -162,13 +203,15 @@ const Container = styled.div`
 
   @media (min-width: 1024px){
     .side-nav{
-    height:69vh;
+    display: flex;
+    flex-direction: column;
+
   }
   .log-out{
-    margin-top: 0rem;
+    margin-top: 8.5rem;
   }
-  .side-nav{
-    height:64vh;
+  .link{
+      margin-top: 1.4rem;
   }
   }
 `
@@ -180,7 +223,11 @@ const Navigation = () => {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
           <div className="right-aligned">    
-              <input className="input-field" type="text" placeholder="Search" /> 
+            {/* <input className="input-field" type="search" placeholder="Search" />  */}
+            <form className="form-inline my-2 my-lg-0">
+                <input className="form-control mr-sm-2" type="search" placeholder="Search"/>
+                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <img className="profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
           </div>
         </header>
@@ -189,18 +236,21 @@ const Navigation = () => {
                 <img className="lg-profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
             </div>
             <div className="side-nav">
-                {/* link to add user/signup form */}
-                <Link className="link" to="/sign-up">Add User</Link>
-                {/* link to add training form */}
-                <Link className="link" to="">Add Training</Link>
-                {/* empty link right now add to= when ready*/}
-                <Link className="link" to="" >Library</Link>
-                {/* empty link right now, add to= when ready*/}
-                <Link className="link" to="">Help</Link>
-                <hr></hr>
-                <Link className="link dash" to="/VolunteerDash">Volunteer Dashboard</Link>
-                <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
-                
+                <div className=" side-nav add-links">
+                    {/* link to add user/signup form */}
+                    <Link className="link add" to="/sign-up">Add User</Link>
+                    {/* link to add training form */}
+                    <Link className="link add" to="">Add Training</Link>
+                    {/* empty link right now add to= when ready*/}
+                    <Link className="link add" to="" >Library</Link>
+                    {/* empty link right now, add to= when ready*/}
+                    <Link className="link add" to="">Help</Link>
+                    <hr></hr>
+                </div>
+                <div className="side-nav dash-link">
+                    <Link className="link dash" to="/VolunteerDash">Volunteer Dashboard</Link>
+                    <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
+                </div>  
             </div>
             <div className="logout">
                 {/* link to logout user */}

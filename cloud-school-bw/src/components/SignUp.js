@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
@@ -128,11 +128,12 @@ const schema = yup.object().shape({
 
 const SignUp = () => {
 
-    const {register, handleSubmit, setValue, errors} = useForm({
+    const {register, handleSubmit, setValue, errors, watch} = useForm({
         resolver: yupResolver(schema)
       });
 
-    
+    //   const password = useRef({});
+    //     password.current = watch("password", "");
 
     const onSubmit = (data) => {
         console.log(data);
@@ -140,8 +141,14 @@ const SignUp = () => {
         setValue("email", "");
         setValue("phoneNumber", "");
         setValue("password", "")
-        setValue("confirmPassword", "");
+        setValue("confirmPassword", "")
         setValue("userType", "");
+
+        const {name, email, phoneNumber, password, userType} = data 
+
+        const newData = {name, email, phoneNumber, password, userType}
+        console.log(newData)
+
         // data.name = data.name.trim();
         // data.email = data.email.trim();
         // data.password = data.password.trim();
@@ -210,7 +217,7 @@ const SignUp = () => {
                         name="confirmPassword"
                         placeholder = 'Confirm Password'
                         ref={register({
-                            required: 'Confirm Password'
+                            required:true
                         })}
                         />
                         {errors.name && <Errors>Please confirm your password</Errors>}
@@ -244,7 +251,7 @@ const SignUp = () => {
                         <Button type="submit">Sign Up</Button>
                         
                             <FooterText>Already have an account?
-                                <Link class = 'login' to ="/"> Log in</Link>
+                                <Link className = 'login' to ="/"> Log in</Link>
                              </FooterText>
                         </StyledForm>
                         </FormDiv>

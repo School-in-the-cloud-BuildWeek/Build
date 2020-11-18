@@ -6,6 +6,7 @@ import Login from './components/Login'
 import styled from 'styled-components'
 import VolunteerDash from './components/VolunteerDash'
 import StudentDash from './components/StudentDash'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppContainer = styled.div`
   width: 100%;

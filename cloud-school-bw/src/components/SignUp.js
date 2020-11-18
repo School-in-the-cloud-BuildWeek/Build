@@ -14,14 +14,12 @@ import css from '../index.css'
         justify-content: center;
         flex-flow: column wrap;   
         font-family: 'Lato', sans-serif;
-        font-style: normal;
-        
+        font-style: normal; 
     `
-
+    
     const StyledHeader = styled.h1`
         font-size: 1.2rem;
         color: #2A7DE1;
-
     `;
 
     const StyledForm = styled.form`
@@ -38,6 +36,7 @@ import css from '../index.css'
         padding-top: 1%;
         padding-bottom:1%;
     `;
+
     const StyledUserType = styled.div`
         display:flex;
         flex-direction:row;
@@ -70,10 +69,11 @@ import css from '../index.css'
         border:none;
         padding-left:3%;
     `
-
+    
     const Label = styled.label`
         font-size: 0.6rem;
     `
+    
     const RadioButtons = styled.input`
         width:6px;
         height:8px;
@@ -87,8 +87,7 @@ import css from '../index.css'
     `
     const ImgLogo = styled.img`
         width:120px;
-        margin-top:2%;
-        
+        margin-top:2%;  
     `
     const ImgDiv = styled.div `
         display:flex;

@@ -43,7 +43,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
         display:flex;
         flex-direction:row;
         font-size: 1rem;
-        margin-right:50%;
+        margin-right:25%;
+        width:50%;
     `;
 
     const Button = styled.button`
@@ -74,11 +75,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
     
     const Label = styled.label`
         font-size: 0.6rem;
+        width:30%;
     `
     
     const RadioButtons = styled.input`
         width:6px;
         height:8px;
+        margin-right:4px;
     `
 
     const Errors = styled.span`

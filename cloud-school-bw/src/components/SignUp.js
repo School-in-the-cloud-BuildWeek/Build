@@ -4,13 +4,18 @@ import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
 import { Link } from 'react-router-dom';
 
+
 // Styling
     const Page = styled.div`
-        background-color: #FFFFFF;
+        background-color: #E5E5E5;
         width:100%;
         height:100vh;
         display: flex;
-        flex-flow: column wrap;    
+        justify-content: center;
+        flex-flow: column wrap;   
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        
     `
 
     const StyledHeader = styled.h1`
@@ -30,8 +35,8 @@ import { Link } from 'react-router-dom';
         border-radius: 10px;
         box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
         justify-content:space-between;
-        padding-top: 2%;
-        padding-bottom:2%;
+        padding-top: 1%;
+        padding-bottom:1%;
     `;
     const StyledUserType = styled.div`
         display:flex;
@@ -67,7 +72,7 @@ import { Link } from 'react-router-dom';
     `
 
     const Label = styled.label`
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     `
     const RadioButtons = styled.input`
         width:6px;
@@ -86,10 +91,12 @@ import { Link } from 'react-router-dom';
         
     `
     const ImgDiv = styled.div `
-        
+        display:flex;
+        justify-content:center;
+        align-content:center;
     `
     const FormDiv = styled.div`
-        margin: auto auto;
+        margin: 2.5% auto;
         width: 350px;
         height: 400px;
     `
@@ -98,6 +105,11 @@ import { Link } from 'react-router-dom';
 //     color: #2A7DE1;
 //     text-decoration:none;
 // `
+
+    const LogoDiv = styled.div`
+        width: 100%;
+    `
+
 // Styling
 
 
@@ -118,11 +130,18 @@ const SignUp = () => {
         // data.password = data.password.trim();
     } 
 
+    const history = useHistory()
+    const routeToLogin = () => {
+        history.push('/')
+    }
+
     return (
         <Page>
-            <ImgDiv>
+        <LogoDiv>
+           <ImgDiv>
            <ImgLogo src = {Logo} alt = 'logo'/>
            </ImgDiv>
+        </LogoDiv>
            <FormDiv>
                <StyledForm onSubmit = {handleSubmit(onSubmit)}>
                <StyledHeader>Sign Up</StyledHeader>
@@ -208,9 +227,6 @@ const SignUp = () => {
                             <FooterText>Already have an account?
                                 <Link to ="/">Log in</Link>
                              </FooterText>
-                       
-
-                          
                         </StyledForm>
                         </FormDiv>
         </Page>

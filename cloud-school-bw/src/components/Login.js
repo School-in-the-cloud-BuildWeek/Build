@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
 import { Link, useHistory} from 'react-router-dom';
+import css from '../index.css'
 
 // Styling
 const Page = styled.div`
@@ -98,6 +99,11 @@ height: 400px;
 const LogoDiv = styled.div`
 width: 100%;
 `
+const FooterDiv = styled.div`
+    display:flex;
+    flex-direction: row;
+    margin-left:50%;
+`
 // Styling
 
 
@@ -153,7 +159,9 @@ return (
                 {errors.password && <Errors>Please enter your password</Errors>}
 
                 <Button type="submit">Log in</Button>
-                <Link to="/sign-up" >Sign Up</Link><span>| Forgot Password</span>
+                <FooterDiv>
+                <Link class = 'signUp' to="/sign-up">Sign Up </Link><span class = 'signUp'>| Forgot Password</span>
+                </FooterDiv>
                 </StyledForm>
                 </FormDiv>
 </Page>

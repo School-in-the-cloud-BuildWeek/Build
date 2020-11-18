@@ -2,14 +2,16 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
+import { Link, useHistory} from 'react-router-dom';
 
 // Styling
 const Page = styled.div`
-background-color: #FFFFFF;
+background-color: #E5E5E5;
 width:100%;
 height:100vh;
 display: flex;
 flex-flow: column wrap;  
+font-family: 'Lato', sans-serif;
 `
 
 const StyledHeader = styled.h1`
@@ -85,12 +87,16 @@ margin-top:2%;
 
 `
 const ImgDiv = styled.div `
-
+display:flex;
+        justify-content:center;
 `
 const FormDiv = styled.div`
 margin: auto auto;
 width: 350px;
 height: 400px;
+`
+const LogoDiv = styled.div`
+width: 100%;
 `
 // Styling
 
@@ -110,11 +116,18 @@ setValue("password", "")
 // data.password = data.password.trim();
 } 
 
+const history = useHistory()
+const routeToSignUp = () => {
+    history.push('/sign-up')
+}
+
 return (
 <Page>
+    <LogoDiv>
     <ImgDiv>
    <ImgLogo src = {Logo} alt = 'logo'/>
    </ImgDiv>
+   </LogoDiv>
    <FormDiv>
        <StyledForm onSubmit = {handleSubmit(onSubmit)}>
        <StyledHeader>Log in</StyledHeader>
@@ -140,7 +153,7 @@ return (
                 {errors.password && <Errors>Please enter your password</Errors>}
 
                 <Button type="submit">Log in</Button>
-                <FooterText>Sign Up  |  Forgot Password</FooterText>
+                <Link to = {routeToSignUp}>Sign Up</Link><span> | Forgot Password</span>
                 </StyledForm>
                 </FormDiv>
 </Page>

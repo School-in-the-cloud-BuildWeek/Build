@@ -66,26 +66,6 @@ const AdminDash = (props) => {
  
     return (
     <AdminContainer>
-        
-            <div className="side-container">
-            <div className="large-profile">
-                <img className="lg-profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
-            </div>
-            <div className="side-nav">
-                {/* link to add user/signup form */}
-                <Link className="link" to="">Add User</Link>
-                {/* link to add training form */}
-                <Link className="link" to="">Add Training</Link>
-                {/* empty link right now */}
-                <Link className="link" to="">Library</Link>
-                {/* empty link right now */}
-                <Link className="link" to="">Help</Link>
-            </div>
-            <div className="logout">
-                {/* link to logout user */}
-                <Link className="log-out" to="">Log Out</Link>
-            </div>
-            </div>
             <div>
             <div className="user-wrapper">
             <div className="nav-tabs">

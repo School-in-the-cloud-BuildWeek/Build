@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
 import { Link, useHistory } from 'react-router-dom';
-
+import css from '../index.css'
 
 // Styling
     const Page = styled.div`
@@ -14,14 +14,12 @@ import { Link, useHistory } from 'react-router-dom';
         justify-content: center;
         flex-flow: column wrap;   
         font-family: 'Lato', sans-serif;
-        font-style: normal;
-        
+        font-style: normal; 
     `
-
+    
     const StyledHeader = styled.h1`
         font-size: 1.2rem;
         color: #2A7DE1;
-
     `;
 
     const StyledForm = styled.form`
@@ -38,11 +36,12 @@ import { Link, useHistory } from 'react-router-dom';
         padding-top: 1%;
         padding-bottom:1%;
     `;
+
     const StyledUserType = styled.div`
         display:flex;
         flex-direction:row;
         font-size: 1rem;
-        margin-right:42%;
+        margin-right:50%;
     `;
 
     const Button = styled.button`
@@ -70,10 +69,11 @@ import { Link, useHistory } from 'react-router-dom';
         border:none;
         padding-left:3%;
     `
-
+    
     const Label = styled.label`
         font-size: 0.6rem;
     `
+    
     const RadioButtons = styled.input`
         width:6px;
         height:8px;
@@ -87,8 +87,7 @@ import { Link, useHistory } from 'react-router-dom';
     `
     const ImgLogo = styled.img`
         width:120px;
-        margin-top:2%;
-        
+        margin-top:2%;  
     `
     const ImgDiv = styled.div `
         display:flex;
@@ -225,7 +224,7 @@ const SignUp = () => {
                         <Button type="submit">Sign Up</Button>
                         
                             <FooterText>Already have an account?
-                                <Link to ="/">Log in</Link>
+                                <Link class = 'login' to ="/"> Log in</Link>
                              </FooterText>
                         </StyledForm>
                         </FormDiv>

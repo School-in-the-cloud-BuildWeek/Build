@@ -1,1 +1,10 @@
+.signUp {
+  text-decoration: none;
+  font-size: 0.5rem;
+  color: #bdc4c9;
+}
 
+.login {
+  color: #2a7de1;
+  text-decoration: none;
+}

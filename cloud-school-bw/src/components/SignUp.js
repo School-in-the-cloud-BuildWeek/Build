@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
 import { Link, useHistory } from 'react-router-dom';
 import css from '../index.css'
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 
 // Styling
     const Page = styled.div`
@@ -112,9 +114,22 @@ import css from '../index.css'
 // Styling
 
 
+const schema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().required(),
+    phoneNumber: yup.string().required(),
+    password: yup.string().required(),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+    userType: yup.string().required(),
+  });
+
 const SignUp = () => {
 
-    const {register, handleSubmit, setValue, errors} = useForm();
+    const {register, handleSubmit, setValue, errors} = useForm({
+        resolver: yupResolver(schema)
+      });
+
+    
 
     const onSubmit = (data) => {
         console.log(data);
@@ -133,6 +148,8 @@ const SignUp = () => {
     const routeToLogin = () => {
         history.push('/')
     }
+
+
 
     return (
         <Page>

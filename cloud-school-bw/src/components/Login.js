@@ -160,7 +160,7 @@ return (
 
                 <Button type="submit">Log in</Button>
                 <FooterDiv>
-                <Link class = 'signUp' to="/sign-up">Sign Up </Link><span class = 'signUp'>| Forgot Password</span>
+                <Link className = 'signUp' to="/sign-up">Sign Up </Link><span className = 'signUp'>| Forgot Password</span>
                 </FooterDiv>
                 </StyledForm>
                 </FormDiv>

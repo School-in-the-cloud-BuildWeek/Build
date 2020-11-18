@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import css from '../index.css'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import Axios from 'axios';
 
 // Styling
     const Page = styled.div`
@@ -39,7 +40,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
         padding-bottom:1%;
     `;
 
-    const StyledUserType = styled.div`
+    const Styledrole = styled.div`
         display:flex;
         flex-direction:row;
         font-size: 1rem;
@@ -117,13 +118,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // Styling
 
 
+
+
 const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().required(),
-    phoneNumber: yup.string().required(),
+    phone: yup.string().required(),
     password: yup.string().required(),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
-    userType: yup.string().required(),
+    role: yup.string().required(),
   });
 
 const SignUp = () => {
@@ -139,15 +142,23 @@ const SignUp = () => {
         console.log(data);
         setValue("name", "");
         setValue("email", "");
-        setValue("phoneNumber", "");
+        setValue("phone", "");
         setValue("password", "")
         setValue("confirmPassword", "")
-        setValue("userType", "");
+        setValue("role", "");
 
-        const {name, email, phoneNumber, password, userType} = data 
+        const {name, email, phone, password, role} = data 
 
-        const newData = {name, email, phoneNumber, password, userType}
+        const newData = {name, email, phone, password, role}
         console.log(newData)
+
+        Axios.post('https://school-in-the-cloud-api.herokuapp.com/api/auth/register', newData)
+        .then(res => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 
         // data.name = data.name.trim();
         // data.email = data.email.trim();
@@ -193,7 +204,7 @@ const SignUp = () => {
 
                         <StyledInput 
                         type="tel"
-                        name="phoneNumber"
+                        name="phone"
                         placeholder = 'Phone Number'
                         ref={register({
                             required: 'Phone Number is required'
@@ -223,12 +234,12 @@ const SignUp = () => {
                         {errors.name && <Errors>Please confirm your password</Errors>}
 
                     
-                        <StyledUserType>
+                        <Styledrole>
                         <Label> 
                         <RadioButtons
-                        name="userType" 
+                        name="role" 
                         type="radio"
-                        value="student"
+                        value="2"
                          ref={register({
                             required: 'Please choose student or volunteer' })}
                             />
@@ -237,17 +248,17 @@ const SignUp = () => {
 
                         <Label> 
                         <RadioButtons
-                        name="userType" 
+                        name="role" 
                         type="radio"
-                        value="volunteer"
+                        value="3"
                          ref={register({
                             required: 'Please choose student or volunteer' })}
                             />
                       
                         Volunteer </Label>
                        
-                        </StyledUserType>
-                        {errors.userType && <Errors>Are you a student or volunteer?</Errors>}
+                        </Styledrole>
+                        {errors.role && <Errors>Are you a student or volunteer?</Errors>}
                         <Button type="submit">Sign Up</Button>
                         
                             <FooterText>Already have an account?

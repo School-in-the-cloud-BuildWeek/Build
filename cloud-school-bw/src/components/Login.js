@@ -1,7 +1,7 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
-import Logo from '../assets/Group.svg'
+import Logo from '../assets/Group.svg';
 import { Link, useHistory } from 'react-router-dom';
 import '../index.css'
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -27,6 +27,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 position: absolute;
+
 width: 425px;
 height: 275px;
 border-radius: 10px;
@@ -99,6 +100,7 @@ const Login = () => {
 
 const {register, handleSubmit, setValue, errors} = useForm();
 
+
 let history = useHistory();
 
 const onSubmit = (userCredentials) => {
@@ -122,6 +124,7 @@ axiosWithAuth().post('/auth/login', userCredentials)
 })
 .catch(err => console.log(err))
 }; 
+
 
 return (
 <Page>

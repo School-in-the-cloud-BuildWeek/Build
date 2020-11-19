@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.svg';
+import Modal from 'react-modal';
 
 const Container = styled.div`
   width: 100%;
@@ -71,7 +72,7 @@ const Container = styled.div`
     color:#2A7DE1;
     font-family: 'Lato', sans-serif;
     background-color: #D9EAFF;
-    border-radius: 10px;
+    border-radius: 38px;
     width: 5.5rem;
     padding: .4rem;
     box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
@@ -82,7 +83,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
   }
-    .dash{
+  .dash{
     color:#D9EAFF;
     background-color: #2A7DE1;
     width: 10rem;
@@ -90,18 +91,25 @@ const Container = styled.div`
 
   .logout{
     width: 100%;
-    padding-bottom: 1rem;
+    height: 5vh;
+    position: fixed;
+    bottom: 0;
+    background-color: #FFFFFF;
   }
 
   .log-out{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
-    align-content: flex-end;
+    align-content: center;
     font-size: 1rem;
     color:#2A7DE1;
     font-family: 'Lato', sans-serif;
     text-decoration: none;
-    margin-top: 1rem;
+    margin-bottom: 1.9%;
   }
   
   .lg-profilePic{
@@ -116,9 +124,15 @@ const Container = styled.div`
     align-content: center;
     flex-wrap: nowrap;
     padding-top: .3rem;
+    position: fixed;
   }
 
   .logo{
+    align-self: center;
+    margin-left: 1rem;
+  }
+
+  .App-logo{
     align-self: center;
     margin-left: 1rem;
   }
@@ -146,25 +160,18 @@ const Container = styled.div`
   .side-container{
     max-width: 14.5rem;
     background: #F4F6F7;
-    height: 90vh;
-  }
-  .side-nav{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-size: 1rem;
-    align-content: center;
-    justify-content: center;
+    height: 100vh;
+    position: fixed;
+    margin-top: 9.5%;
   }
 
   .link{
     width: 5.5rem;
     padding: .4rem;
     box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
-    margin: .3rem .3rem;
-    /* width: 80%; */
+    margin: .4rem .3rem;
     padding: .5rem;
-    
+    font-size: 1rem;
   }
 
   .add-links{
@@ -183,7 +190,7 @@ const Container = styled.div`
     }
 
   .logout{
-    width: 100%;
+    width: auto;
 
   }
 
@@ -195,6 +202,8 @@ const Container = styled.div`
     margin-top: 7rem; 
     position: fixed;
     bottom: 0;
+    width: auto;
+
     
   }
   hr{
@@ -204,31 +213,84 @@ const Container = styled.div`
 }
 
   @media (min-width: 1024px){
-    .side-nav{
-    display: flex;
-    flex-direction: column;
+    .side-container{
+      margin-top: 6rem;
+    }
+    .logout{
+    width: auto;
+    }
 
-  }
-  .log-out{
-    margin-top: 8.5rem;
-  }
-  
+    .log-out{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 10%;
+    text-align: left;
+    }
   .link{
       margin-top: 1.4rem;
-  }
+    }
   }
 `
-const Navigation = () => {
+const ModalContainer =styled.div`
+.modal-bg{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s opacity 0.5s;
+    }
+    .bg-active{
+        visibility: visible;
+        opacity: 1;
+    }
 
-  const showTrainingForm = () => {
-    const tForm = document.getElementById('training-form')
-    if(tForm.style.dispaly === 'none'){
-      tForm.style.dispaly = 'block'
+    .modal{
+        position: relative;
+        background-color: white;
+        width: 30%;
+        height: 30%;
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        flex-direction: column;
+        font-family: 'Lato', sans-serif;
+    } 
+
+    .modal button{
+        border-color: #2A7DE1;
+        color: #2A7DE1;
+        background-color: #D9EAFF;
+        border-radius: 38px;
+        font-family: 'Lato', sans-serif;
     }
-    else {
-      tForm.style.display = 'none'
+    .modal-close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-weight: bold;
+        cursor: pointer;
     }
-  };
+`
+
+const Navigation = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  // const showTrainingForm = () => {
+  //   const tForm = document.getElementById('training-form')
+  //   if(tForm.style.dispaly === 'none'){
+  //     tForm.style.dispaly = 'block'
+  //   }
+  //   else {
+  //     tForm.style.display = 'none'
+  //   }
+  // };
 
     return (
     <Container>
@@ -253,14 +315,17 @@ const Navigation = () => {
               <div className=" side-nav add-links">
                     {/* link to add user/signup form */}
                     <Link className="link add add-user" to="/sign-up">Add User</Link>
+
                     {/* link to add training form */}
-                    <Link className="link add add-training" to="">Add Training</Link>
+                    <button className="link add add-training" onClick={() => setModalIsOpen(true)} >Add Training</button>
+                    
+
                     {/* empty link right now add to= when ready*/}
                     <Link className="link add" to="" >Library</Link>
                     {/* empty link right now, add to= when ready*/}
                     <Link className="link add" to="">Help</Link>
                     <hr></hr>
-                </div>
+              </div>
                 <div className="side-nav dash-link">
                     <Link className="link dash volunteer-dash" to="/VolunteerDash">Volunteer Dashboard</Link>
                     <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
@@ -271,6 +336,18 @@ const Navigation = () => {
                 <Link className="log-out" to="">Log Out</Link>
             </div>
         </div>
+        <ModalContainer className="modal-bg">
+                <Modal isOpen={modalIsOpen} onResquestClose={() => setModalIsOpen(false)}>
+                      <h2>Create A Training</h2>
+                        <label for="name">Training Name:</label>
+                          <input type="text" name="name"></input>
+                        <label for="training-details">Training Details</label>
+                          <input type="text" name="details"></input>
+                          <button>Create</button>
+                      <button  onClick={() => setModalIsOpen(false)}>X</button>
+                    
+                </Modal>
+          </ModalContainer>
     </Container>
     )
 }

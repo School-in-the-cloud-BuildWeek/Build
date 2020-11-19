@@ -6,6 +6,7 @@ import Login from './components/Login'
 import styled from 'styled-components'
 import VolunteerDash from './components/VolunteerDash'
 import StudentDash from './components/StudentDash'
+import VolunteerForm from './components/VolunteerForm'
 import "bootstrap/dist/css/bootstrap.css";
 
 const AppContainer = styled.div`
@@ -21,11 +22,14 @@ function App() {
   return (
       <AppContainer className="App">
         <Switch>
+
           <Route path="/admin" component={AdminDash} />
-          <Route path= "/VolunteerDash/trainings" component={VolunteerDash} />
-          <Route path= "/StudentDash/volunteers" component={StudentDash} />
+          <Route path= "/VolunteerDash" component={VolunteerDash} />
+          <Route path= "/StudentDash" component={StudentDash} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/" component={Login} />
+          <Route path="/" component={Login} /> */}
+          {/* <Route path="#" component={VolunteerForm} /> */}
+          <VolunteerForm/>
         </Switch>
       </AppContainer>
   );

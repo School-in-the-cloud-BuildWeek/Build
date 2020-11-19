@@ -109,11 +109,6 @@ import axios from 'axios';
         height: 425px;
     `
 
-//     const StyledAnchor = styled.a`
-//     color: #2A7DE1;
-//     text-decoration:none;
-// `
-
     const LogoDiv = styled.div`
         width: 100%;
         margin-top: 8%;

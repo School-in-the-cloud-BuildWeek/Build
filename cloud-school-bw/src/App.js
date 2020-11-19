@@ -22,9 +22,10 @@ function App() {
   return (
       <AppContainer className="App">
         <Switch>
-          {/* <Route path="/admin" component={AdminDash} />
-          <Route path= "/VolunteerDash/trainings" component={VolunteerDash} />
-          <Route path= "/StudentDash/volunteers" component={StudentDash} />
+
+          <Route path="/admin" component={AdminDash} />
+          <Route path= "/VolunteerDash" component={VolunteerDash} />
+          <Route path= "/StudentDash" component={StudentDash} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/" component={Login} /> */}
           {/* <Route path="#" component={VolunteerForm} /> */}

@@ -196,7 +196,7 @@ return (
         <TrainingsTable className="trainings-small-table">
             <div className="completed-trainings">
                 <h2>Completed Trainings</h2>
-                <div class="table-responsive text-nowrap">
+                <div className="table-responsive text-nowrap">
                     <table className="table table-hover">
                         <thead>
                             <tr className="border-bottom">
@@ -217,7 +217,7 @@ return (
         <TrainingsTable className="trainings-small-table">
             <div className="completed-trainings">
                 <h2>Scheduled Tutor Sessions</h2>
-                <div class="table-responsive text-nowrap">
+                <div className="table-responsive text-nowrap">
                     <table className="table table-hover">
                         <thead>
                             <tr className="border-bottom">

@@ -2,8 +2,9 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
-import { Link, useHistory} from 'react-router-dom';
-import css from '../index.css'
+import { Link, useHistory } from 'react-router-dom';
+import '../index.css'
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 // Styling
 const Page = styled.div`
@@ -13,12 +14,11 @@ height:100vh;
 display: flex;
 flex-flow: column wrap;  
 font-family: 'Lato', sans-serif;
-`
+`;
 
 const StyledHeader = styled.h1`
-font-size: 1.2rem;
+font-size: 1.4rem;
 color: #2A7DE1;
-
 `;
 
 const StyledForm = styled.form`
@@ -27,20 +27,15 @@ display:flex;
 flex-direction:column;
 align-items:center;
 position: absolute;
-width: 350px;
-height: 200px;
+width: 425px;
+height: 275px;
 border-radius: 10px;
 box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
 justify-content:space-between;
 padding-top: 2%;
 padding-bottom:2%;
 `;
-// const StyledUserType = styled.div`
-// display:flex;
-// flex-direction:row;
-// font-size: 1rem;
-// margin-right:42%;
-// `;
+
 
 const Button = styled.button`
 background-color: #2A7DE1;
@@ -51,11 +46,6 @@ border: none;
 height: 26px;
 `;
 
-// const FooterText = styled.p`
-// color: #BDC4C9;
-// font-size:0.6rem;
-// margin-left:40%;
-// `;
 
 const StyledInput = styled.input`
 background-color: #F4F6F7;
@@ -63,47 +53,44 @@ color: #082E5B;
 border-radius: 3px;
 width: 75%;
 height: 25px;
-font-size: 10px;
+font-size: 12px;
 border:none;
 padding-left:3%;
-`
+`;
 
-// const Label = styled.label`
-// font-size: 0.8rem;
-// `
-// const RadioButtons = styled.input`
-// width:6px;
-// height:8px;
-// `
 
 const Errors = styled.span`
 color:red;
 font-size:0.5rem;
 text-align:left;
 width:75%;
-`
-const ImgLogo = styled.img`
-width:120px;
-margin-top:2%;
+`;
 
-`
+const ImgLogo = styled.img`
+width:175px;
+margin-top:5%;
+`;
+
 const ImgDiv = styled.div `
-display:flex;
-        justify-content:center;
-`
+    display:flex;
+    justify-content:center;
+`;
+
 const FormDiv = styled.div`
-margin: auto auto;
-width: 350px;
-height: 400px;
-`
+margin: 5% auto;
+width: 425px;
+height: 275px;
+`;
+
 const LogoDiv = styled.div`
 width: 100%;
-`
+`;
+
 const FooterDiv = styled.div`
     display:flex;
     flex-direction: row;
     margin-left:50%;
-`
+`;
 // Styling
 
 
@@ -112,20 +99,29 @@ const Login = () => {
 
 const {register, handleSubmit, setValue, errors} = useForm();
 
-const onSubmit = (data) => {
-console.log(data);
-setValue("email", "");
-setValue("password", "")
+let history = useHistory();
 
-// data.name = data.name.trim();
-// data.email = data.email.trim();
-// data.password = data.password.trim();
-} 
-
-const history = useHistory()
-const routeToSignUp = () => {
-    history.push('/sign-up')
-}
+const onSubmit = (userCredentials) => {
+console.log(userCredentials);
+axiosWithAuth().post('/auth/login', userCredentials)
+.then(res => {
+    localStorage.setItem('token', res.data.token);
+    if(res.data.role === 1) {
+        setValue("email", "");
+        setValue("password", "");
+        history.push('/admin')
+    } else if (res.data.role === 3){
+        setValue("email", "");
+        setValue("password", "");
+        history.push('/VolunteerDash/trainings')
+    } else if ( res.data.role === 2){
+        setValue("email", "");
+        setValue("password", "");
+        history.push('/StudentDash/volunteers')
+    }
+})
+.catch(err => console.log(err))
+}; 
 
 return (
 <Page>

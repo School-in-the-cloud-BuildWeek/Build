@@ -108,7 +108,7 @@ const StudentList = (props) => {
         <StudentTable>
         <div id="student-list">
             <h2>Students</h2>
-            <div class="table-responsive text-nowrap">
+            <div className="table-responsive text-nowrap">
             <table className="table table-hover">
                 <thead>
                     <tr className="border-bottom">

@@ -28,7 +28,7 @@ flex-direction:column;
 align-items:center;
 position: absolute;
 width: 350px;
-height: 200px;
+height: 250px;
 border-radius: 10px;
 box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
 justify-content:space-between;

@@ -137,7 +137,7 @@ const StudentList = (props) => {
 
                             <td>{vol.name.first} {vol.name.last}</td>
                             <td>
-                                <button>EMail</button>
+                                <button>Email</button>
                                 {/* <a className="mailto" href={`mailto:${vol.email}`}>eMail</a> */}
                             </td>
                             <td>{vol.phone}</td>

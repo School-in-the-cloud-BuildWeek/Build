@@ -7,25 +7,27 @@ const StudentTable= styled.div`
     padding: 0;
     display: flex;
     font-family: 'Lato', sans-serif;
-    background: #FAFAFB;
     
     #student-list{
         display: none;
-        width: 97%;
+        width: 99%;
         flex-direction: column;
         flex-wrap: wrap; 
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         margin: .3rem;
+        height: 100vh;
     }
 
     h2{
         color: #2A7DE1;
         align-self: center;
+        border: none;
+        margin-top: 3%;
     }
     .table{
         border-collapse: collapse;
         flex-direction: column;
         font-size: 1rem;
+        border: none;
     }
 
     thead{
@@ -39,6 +41,11 @@ const StudentTable= styled.div`
 
     tr.border-bottom th{
         border-bottom: 3px solid #F4F6F7;
+        border-top: none;
+    }
+    button{
+        border: none;
+        box-shadow: -.1em 0 .2em rgba(0, 0, 0, 0.2);
     }
 
     @media (min-width: 768px){
@@ -47,10 +54,11 @@ const StudentTable= styled.div`
         margin-left: 16rem; 
         width: 65%;
         max-height: 668px;
-        .student-list{
+        #student-list{
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            height:80vh;
         }
 
         h2{
@@ -60,15 +68,19 @@ const StudentTable= styled.div`
         }
   }
    @media (min-width: 1024px){
-        width: 72%;
-        margin-top: 10.5rem;
-        max-height: 800px;
-        .student-list{
-        width: 99%;
-
-    } 
-   
-    }
+        margin-top: 11rem;
+        
+        #student-list{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height:80vh;
+        } 
+        thead{
+        justify-content: flex-start;
+        align-content: flex-start;
+        }
+   }
 `
 const Error= styled.div`
          @media (min-width: 768px){

@@ -7,11 +7,12 @@ import TrainingForm from './TrainingForm';
 
 
 const AdminContainer = styled.div`
-    display: flex;
+    /* display: flex; */
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100vh;
+    /* width: 100%;
+    height: 100vh; */
+    
     
     border: 1px blue solid;
 /* body space */
@@ -21,9 +22,9 @@ const AdminContainer = styled.div`
     }
     .body-container{
         height: 100vh;
-        border: 4px orange solid;
         display: flex;
         flex-direction: row;
+
     }
 /* buttons on body section */
     .nav-tabs{
@@ -33,47 +34,52 @@ const AdminContainer = styled.div`
         justify-content: center;
         font-size: 1.4rem;
         text-align: center;
-        height: 10vh;
+        height: 6vh;
+        border: none;
     }
     /* volunteer tab */
     #tab1{
         background-color: #2A7DE1;
         display: inline-block;
-        padding: 1rem 2.5rem;
+        padding: .5rem 2rem;
         color: #FAFAFB;
         border-radius: 10px 10px 0px 0px;
-        box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
+        box-shadow: 0em 0 .2em rgba(0, 0, 0, 0.2);
         width: 11rem;
         text-decoration: none;
         margin: 0 .3rem;
+        border: none;
     }
     
      #tab2 {
          background-color: #D9EAFF;
          display: inline-block;
-         padding: 1rem 2.5rem;
+         padding: .5rem 2rem;
          color: #2A7DE1;
          border-radius: 10px 10px 0px 0px;
-         box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
+         box-shadow: 0em 0 .2em rgba(0, 0, 0, 0.2);
          width: 11rem;
          text-decoration: none;
+         border: none;
      }
 
      @media (min-width: 768px){
         .user-wrapper{
             display: flex;
             flex-direction: row;
+            
         }
         .nav-tabs{
         position: absolute;
-        margin-top: 6.5rem;
+        margin-top: 8rem;
         width: 60%;
-        margin-left: 15rem;
+        margin-left: 13rem;
+        
         }  
-        .tab1{
+        #tab1{
         padding: .5rem 2.5rem; 
         }
-        .tab2{
+        #tab2{
         padding: .5rem 2.5rem; 
         }
     }
@@ -81,13 +87,14 @@ const AdminContainer = styled.div`
         .nav-tabs{
         position: absolute;
         margin-top: 7.5rem;
+        margin-left: 8rem;
         }  
     }
 `
 
 const AdminDash = (props) => {
-
     
+
     
     const showVolunteers = () => {
         const studList = document.getElementById('student-list');

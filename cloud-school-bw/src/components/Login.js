@@ -2,8 +2,8 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
-import { Link, useHistory} from 'react-router-dom';
-import css from '../index.css'
+import { Link } from 'react-router-dom';
+import '../index.css'
 
 // Styling
 const Page = styled.div`
@@ -121,11 +121,6 @@ setValue("password", "")
 // data.email = data.email.trim();
 // data.password = data.password.trim();
 } 
-
-const history = useHistory()
-const routeToSignUp = () => {
-    history.push('/sign-up')
-}
 
 return (
 <Page>

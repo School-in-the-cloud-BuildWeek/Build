@@ -113,11 +113,11 @@ axiosWithAuth().post('/auth/login', userCredentials)
     } else if (res.data.role === 3){
         setValue("email", "");
         setValue("password", "");
-        history.push('/VolunteerDash/trainings')
+        history.push('/VolunteerDash')
     } else if ( res.data.role === 2){
         setValue("email", "");
         setValue("password", "");
-        history.push('/StudentDash/volunteers')
+        history.push('/StudentDash')
     }
 })
 .catch(err => console.log(err))

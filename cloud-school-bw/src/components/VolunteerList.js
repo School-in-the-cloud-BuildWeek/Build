@@ -122,7 +122,7 @@ return (
 <VolunteerTable>
     <div id="volunteer-list">
         <h2>Volunteers</h2>
-        <div class="table-responsive text-nowrap">
+        <div className="table-responsive text-nowrap">
             <table className="table table-hover">
                 <thead>
                     <tr className="border-bottom">

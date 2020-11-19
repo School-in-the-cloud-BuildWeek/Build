@@ -2,12 +2,12 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../index.css';
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import axios from 'axios';
+ 
 
 
 // Styling
@@ -16,14 +16,13 @@ import axios from 'axios';
         width:100%;
         height:100vh;
         display: flex;
-        justify-content: center;
         flex-flow: column wrap;   
         font-family: 'Lato', sans-serif;
         font-style: normal; 
     `
     
     const StyledHeader = styled.h1`
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         color: #2A7DE1;
     `;
 
@@ -33,8 +32,8 @@ import axios from 'axios';
         flex-direction:column;
         align-items:center;
         position: absolute;
-        width: 350px;
-        height: 400px;
+        width: 375px;
+        height: 425px;
         border-radius: 10px;
         box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
         justify-content:space-between;
@@ -45,8 +44,8 @@ import axios from 'axios';
     const Styledrole = styled.div`
         display:flex;
         flex-direction:row;
-        font-size: 1rem;
-        margin-right:25%;
+        font-size: 1.2rem;
+        margin-right:22%;
         width:50%;
     `;
 
@@ -61,8 +60,9 @@ import axios from 'axios';
 
     const FooterText = styled.p`
         color: #BDC4C9;
-        font-size:0.6rem;
-        margin-left:40%;
+        font-size:0.8rem;
+        margin-left:30%;
+        margin-top:.25%;
     `;
 
     const StyledInput = styled.input`
@@ -71,20 +71,21 @@ import axios from 'axios';
         border-radius: 3px;
         width: 75%;
         height: 25px;
-        font-size: 10px;
+        font-size: 12px;
         border:none;
         padding-left:3%;
     `
     
     const Label = styled.label`
-        font-size: 0.6rem;
-        width:30%;
+        font-size: 0.8rem;
+        width:40%;
     `
     
     const RadioButtons = styled.input`
         width:6px;
         height:8px;
         margin-right:4px;
+        font-size:1.2rem;
     `
 
     const Errors = styled.span`
@@ -94,8 +95,8 @@ import axios from 'axios';
         width:75%;
     `
     const ImgLogo = styled.img`
-        width:120px;
-        margin-top:2%;  
+        width:175px;
+          
     `
     const ImgDiv = styled.div `
         display:flex;
@@ -104,12 +105,13 @@ import axios from 'axios';
     `
     const FormDiv = styled.div`
         margin: 2.5% auto;
-        width: 350px;
-        height: 400px;
+        width: 375px;
+        height: 425px;
     `
 
     const LogoDiv = styled.div`
         width: 100%;
+        margin-top: 8%;
     `
 
 // Styling
@@ -120,7 +122,7 @@ import axios from 'axios';
 const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().required(),
-    phone: yup.string().required(),
+    phone: yup.string().notRequired(),
     password: yup.string().required(),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
     role: yup.string().required(),
@@ -132,23 +134,25 @@ const SignUp = () => {
         resolver: yupResolver(schema)
       });
 
+      let history = useHistory();
+
     const onSubmit = (user) => {
-        setValue("name", "");
-        setValue("email", "");
-        setValue("phone", "");
-        setValue("password", "")
-        setValue("confirmPassword", "")
-        setValue("role", "");
-
-
+        console.log(user)
         const {name, email, phone, password, role} = user 
         const newUser = {name, email, phone, password, role}
-
+        console.log({newUser})
         axios.post('https://school-in-the-cloud-api.herokuapp.com/api/auth/register', newUser)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-
-
+        .then(res => {
+            console.log(res.data.data[0]);
+                setValue("name", "");
+                setValue("email", "");
+                setValue("phone", "");
+                setValue("password", "")
+                setValue("confirmPassword", "")
+                setValue("role", "");
+                history.push('/');
+            })
+        .catch(err => console.log(err))   
     } 
 
     
@@ -215,7 +219,7 @@ const SignUp = () => {
 
                     
                         <Styledrole>
-                        <Label> 
+                        <Label > 
                         <RadioButtons
                         name="role" 
                         type="radio"
@@ -226,7 +230,7 @@ const SignUp = () => {
                 
                         Student </Label>
 
-                        <Label> 
+                        <Label > 
                         <RadioButtons
                         name="role" 
                         type="radio"

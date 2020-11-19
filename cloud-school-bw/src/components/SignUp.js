@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import '../index.css';
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import axios from 'axios';
+
 
 // Styling
     const Page = styled.div`
@@ -118,6 +120,8 @@ import axios from 'axios';
 // Styling
 
 
+
+
 const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().required(),
@@ -141,12 +145,15 @@ const SignUp = () => {
         setValue("confirmPassword", "")
         setValue("role", "");
 
+
         const {name, email, phone, password, role} = user 
         const newUser = {name, email, phone, password, role}
 
         axios.post('https://school-in-the-cloud-api.herokuapp.com/api/auth/register', newUser)
         .then(res => console.log(res))
         .catch(err => console.log(err))
+
+
     } 
 
     
@@ -217,7 +224,7 @@ const SignUp = () => {
                         <RadioButtons
                         name="role" 
                         type="radio"
-                        value="student"
+                        value="2"
                          ref={register({
                             required: 'Please choose student or volunteer' })}
                             />
@@ -228,7 +235,7 @@ const SignUp = () => {
                         <RadioButtons
                         name="role" 
                         type="radio"
-                        value="volunteer"
+                        value="3"
                          ref={register({
                             required: 'Please choose student or volunteer' })}
                             />

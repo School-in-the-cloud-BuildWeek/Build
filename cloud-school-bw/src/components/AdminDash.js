@@ -10,13 +10,21 @@ const AdminContainer = styled.div`
     margin: 0;
     padding: 0;
     width: 100%;
-    /* *{
-        border: 1px red solid;
-    } */
-    .user-wrapper{
+    height: 100vh;
+    
+    border: 1px blue solid;
+/* body space */
+    .body-wrapper{
         background: #E5E5E5;
         width: 100%;
     }
+    .body-container{
+        height: 100vh;
+        border: 4px orange solid;
+        display: flex;
+        flex-direction: row;
+    }
+/* buttons on body section */
     .nav-tabs{
         display: flex;
         width: 100%;
@@ -24,13 +32,14 @@ const AdminContainer = styled.div`
         justify-content: center;
         font-size: 1.4rem;
         text-align: center;
+        height: 10vh;
     }
-
+    /* volunteer tab */
     .tab1{
         background-color: #2A7DE1;
         display: inline-block;
         padding: 1rem 2.5rem;
-        color: #D9EAFF;
+        color: #FAFAFB;
         border-radius: 10px 10px 0px 0px;
         box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
         width: 11rem;
@@ -45,6 +54,7 @@ const AdminContainer = styled.div`
          background-color: #D9EAFF;
          color: #2A7DE1;
      }
+    /* students tab */
      .tab2 {
          background-color: #D9EAFF;
          display: inline-block;
@@ -57,7 +67,7 @@ const AdminContainer = styled.div`
      }
      .tab2:hover {
          background-color: #2A7DE1;
-         color: #D9EAFF;
+         color: #FAFAFB;;
      }
 
      .tab2.active {
@@ -95,17 +105,19 @@ const AdminDash = (props) => {
     return (
     <AdminContainer>
         
-        <div className="user-wrapper">
+        <div className="body-wrapper">
             <Navigation />
-            <div className="nav-tabs">
-                <div>
-                    <NavLink activeClassName="active" className="tab1" to="/admin/volunteers">Volunteers</NavLink>
+            <div class="body-container">
+                <div className="nav-tabs">
+                    <div>
+                        <NavLink activeClassName="active" className="tab1" to="/admin/volunteers">Volunteers</NavLink>
+                    </div>
+                    <div >
+                        <NavLink activeClassName="active" className="tab2" to="/admin/students">Students</NavLink></div>
+                    </div>
+                    <Route path="/admin/volunteers" component={VolunteerList} />
+                    <Route path="/admin/students" component={StudentList} />
                 </div>
-                <div >
-                    <NavLink activeClassName="active" className="tab2" to="/admin/students">Students</NavLink></div>
-                </div>
-                <Route path="/admin/volunteers" component={VolunteerList} />
-                <Route path="/admin/students" component={StudentList} />
             </div>
     </AdminContainer>
     )

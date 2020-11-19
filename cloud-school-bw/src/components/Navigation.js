@@ -146,7 +146,7 @@ const Container = styled.div`
   .side-container{
     max-width: 14.5rem;
     background: #F4F6F7;
-    /* height: 80vh; */
+    height: 90vh;
   }
   .side-nav{
     display: flex;
@@ -184,16 +184,18 @@ const Container = styled.div`
 
   .logout{
     width: 100%;
-    
+
   }
 
   .log-out{
     font-size: 1rem;
-    display: flex;
     justify-content: center;
     align-content: flex-end;
     padding: .5rem;
-    margin-top: 9.5rem;
+    margin-top: 7rem; 
+    position: fixed;
+    bottom: 0;
+    
   }
   hr{
       border: 1px solid #2A7DE1;
@@ -210,6 +212,7 @@ const Container = styled.div`
   .log-out{
     margin-top: 8.5rem;
   }
+  
   .link{
       margin-top: 1.4rem;
   }
@@ -238,9 +241,9 @@ const Navigation = () => {
             <div className="side-nav">
                 <div className=" side-nav add-links">
                     {/* link to add user/signup form */}
-                    <Link className="link add" to="/sign-up">Add User</Link>
+                    <Link className="link add add-user" to="/sign-up">Add User</Link>
                     {/* link to add training form */}
-                    <Link className="link add" to="">Add Training</Link>
+                    <Link className="link add add-training" to="">Add Training</Link>
                     {/* empty link right now add to= when ready*/}
                     <Link className="link add" to="" >Library</Link>
                     {/* empty link right now, add to= when ready*/}
@@ -248,7 +251,7 @@ const Navigation = () => {
                     <hr></hr>
                 </div>
                 <div className="side-nav dash-link">
-                    <Link className="link dash" to="/VolunteerDash">Volunteer Dashboard</Link>
+                    <Link className="link dash volunteer-dash" to="/VolunteerDash">Volunteer Dashboard</Link>
                     <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
                 </div>  
             </div>

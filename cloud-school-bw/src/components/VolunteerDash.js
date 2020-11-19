@@ -1,72 +1,119 @@
-// import React from 'react'
-// import Navigation from './Navigation'
-// import styled from 'styled-components'
+import React from 'react';
+import { Route, NavLink } from "react-router-dom";
+import TrainingData from './TrainingData';
+import StudentList from './StudentList';
+import styled from 'styled-components'
+import Navigation from './Navigation'
 
-// const Container = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-content: center;
-//     text-align: center;
+const VolunteerContainer = styled.div`
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
-// .card{
-//     background-color: #0961AA;
-//     opacity: 0.75;
-//     font-family: Starwars;
-//     margin: 1%;
-//     width: 98%;  
-// }
+    .add-user{
+        display: none;
+    }
+    .volunteer-dash{
+        display: none;
+    }
+    .user-wrapper{
+        background: #E5E5E5;
+        width: 100%;
+    }
+    .nav-tabs{
+        display: flex;
+        width: 100%;
+        font-family: 'Lato', sans-serif;
+        justify-content: center;
+        font-size: 1.4rem;
+        text-align: center;
+    }
 
-// .stats{
-//     font-size: 3rem;
-//     color: #DAAD40;
-//     text-shadow: 1px 1px 5px #404040;
-//     font-family: Star Jedi Hollow;
-//     cursor: pointer;
-   
-// }
-// .cardBody{
-//     background-color: white;
-//     font-size: 3rem;
-    
-// }
+    .tab1{
+        background-color: #2A7DE1;
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        color: #FAFAFB;
+        border-radius: 10px 10px 0px 0px;
+        box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
+        width: 11rem;
+        text-decoration: none;
+        margin: 0 .3rem;
+    }
+    .tab1:hover{
+        background-color: #D9EAFF;
+        color: #2A7DE1;
+    }
+    .tabOne.active {
+         background-color: #D9EAFF;
+         color: #2A7DE1;
+     }
+     .tab2 {
+         background-color: #D9EAFF;
+         display: inline-block;
+         padding: 1rem 2.5rem;
+         color: #2A7DE1;
+         border-radius: 10px 10px 0px 0px;
+         box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
+         width: 11rem;
+         text-decoration: none;
+     }
+     .tab2:hover {
+         background-color: #2A7DE1;
+         color: #FAFAFB;
+     }
 
-// .title{
-//     font-family: Starwars;
-//     font-size: 5rem;
-//     opacity: 1;
-//     color: white;
-//     text-shadow: 1px 1px 5px #202121;
-    
-// }
-// `
-// const VolunteerDash = ({volunteers}) => {
-//  const [open, setOpen] = useState(false);
+     .tab2.active {
+         background-color: #2A7DE1;
+         color: #D9EAFF
+     }
+     @media (min-width: 768px){
+        .user-wrapper{
+            display: flex;
+            flex-direction: row;
+        }
+        .nav-tabs{
+        position: absolute;
+        margin-top: 6.5rem;
+        width: 60%;
+        margin-left: 15rem;
+        }  
+        .tab1{
+        padding: .5rem 2.5rem; 
+        }
+        .tab2{
+        padding: .5rem 2.5rem; 
+        }
+    }
+    @media (min-width: 1024px){
+        .nav-tabs{
+        position: absolute;
+        margin-top: 7.5rem;
+        }  
+    }
+`
 
-//  return(
-//      <Container>
-//          <div>
-//             <Navigation />
-//         </div>
-//      <Accordion defaultActiveKey="0">
-//          <Card className= "card">
-//                 <Card.Title className="title"> {volunteers.name}</Card.Title>
-//                 <Accordion.Toggle className="stats" as={Card.Header} eventKey= "1"     onClick={() => setOpen(!open)}>
-//                 ===StatS+++ {open ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
-//                 </Accordion.Toggle>
-//                 <Accordion.Collapse eventKey= "1">
-//                     <Card.Body className="cardBody" bg-transparent>
-//                         <p>Height: {characterData.height}</p>
-//                         <p>Hair Color: {characterData.hair_color}</p>
-//                         <p>Skin Color: {characterData.skin_color}</p>
-//                         <p>Eye Color: {characterData.eye_color}</p>
-//                         <p>Birth Year: {characterData.birth_year}</p>
-//                         <p>Gender: {characterData.gender}</p>
-//                         </Card.Body>
-//                 </Accordion.Collapse>
-//          </Card>
-//      </Accordion>
-//      </Container >
-//  )
-// }
-// export default VolunteerDash
+const VolunteerDash = (props) => {
+ 
+    return (
+    <VolunteerContainer>
+        
+        <div className="user-wrapper">
+            <Navigation />
+            <div className="nav-tabs">
+                <div>
+                    <NavLink activeClassName="active" className="tab1" to="/VolunteerDash/trainings">Trainings</NavLink>
+                </div>
+                <div >
+                    <NavLink activeClassName="active" className="tab2" to="/admin/students">Students</NavLink></div>
+                </div>
+                <Route path="/VolunteerDash/trainings" component={TrainingData} />
+                <Route path="/admin/students" component={StudentList} />
+            </div>
+            
+    </VolunteerContainer>
+    )
+}
+
+export default VolunteerDash

@@ -9,8 +9,8 @@ const StudentTable= styled.div`
     font-family: 'Lato', sans-serif;
     background: #FAFAFB;
     
-    .student-list{
-        display: flex;
+    #student-list{
+        display: none;
         width: 97%;
         flex-direction: column;
         flex-wrap: wrap; 
@@ -106,7 +106,7 @@ const StudentList = (props) => {
 
     return (
         <StudentTable>
-        <div className="student-list">
+        <div id="student-list">
             <h2>Students</h2>
             <div class="table-responsive text-nowrap">
             <table className="table table-hover">

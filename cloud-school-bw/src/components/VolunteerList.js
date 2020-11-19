@@ -9,7 +9,7 @@ const VolunteerTable= styled.div`
     font-family: 'Lato', sans-serif;
     background: #FAFAFB;
     
-    .volunteer-list{
+    #volunteer-list{
         display: flex;
         width: 97%;
         flex-direction: column;
@@ -107,7 +107,7 @@ const VolunteerList = (props) => {
 
 return (
 <VolunteerTable>
-    <div className="volunteer-list">
+    <div id="volunteer-list">
         <h2>Volunteers</h2>
         <div class="table-responsive text-nowrap">
             <table className="table table-hover">

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, NavLink } from "react-router-dom";
 import VolunteerList from './VolunteerList';
 import StudentList from './StudentList';
-import styled from 'styled-components'
-import Navigation from './Navigation'
+import styled from 'styled-components';
+import Navigation from './Navigation';
+import TrainingForm from './TrainingForm';
+
 
 const AdminContainer = styled.div`
     display: flex;
@@ -26,7 +27,7 @@ const AdminContainer = styled.div`
         text-align: center;
     }
 
-    .tab1{
+    #tab1{
         background-color: #2A7DE1;
         display: inline-block;
         padding: 1rem 2.5rem;
@@ -37,15 +38,8 @@ const AdminContainer = styled.div`
         text-decoration: none;
         margin: 0 .3rem;
     }
-    .tab1:hover{
-        background-color: #D9EAFF;
-        color: #2A7DE1;
-    }
-    .tabOne.active {
-         background-color: #D9EAFF;
-         color: #2A7DE1;
-     }
-     .tab2 {
+    
+     #tab2 {
          background-color: #D9EAFF;
          display: inline-block;
          padding: 1rem 2.5rem;
@@ -55,15 +49,7 @@ const AdminContainer = styled.div`
          width: 11rem;
          text-decoration: none;
      }
-     .tab2:hover {
-         background-color: #2A7DE1;
-         color: #D9EAFF;
-     }
-
-     .tab2.active {
-         background-color: #2A7DE1;
-         color: #D9EAFF
-     }
+     
      @media (min-width: 768px){
         .user-wrapper{
             display: flex;
@@ -91,6 +77,46 @@ const AdminContainer = styled.div`
 `
 
 const AdminDash = (props) => {
+
+    
+    
+    const showVolunteers = () => {
+        const studList = document.getElementById('student-list');
+        const volList = document.getElementById('volunteer-list');
+        const volButton = document.getElementById('tab1');
+        const studButton = document.getElementById('tab2');
+
+        return (
+            studList.style.display = 'none',
+            studButton.style.backgroundColor = '#D9EAFF',
+            studButton.style.color = '#2A7DE1',
+            
+            volList.style.display = 'flex',
+            volButton.style.backgroundColor = '#2A7DE1',
+            volButton.style.color = '#D9EAFF'
+         
+        )
+    }
+
+    const showStudents = () => {
+        const studList = document.getElementById('student-list');
+        const volList = document.getElementById('volunteer-list');
+        const studButton = document.getElementById('tab2')
+        const volButton = document.getElementById('tab1')
+
+        return (
+            studList.style.display = 'flex',
+            studButton.style.backgroundColor = '#2A7DE1',
+            studButton.style.color = '#D9EAFF',
+            
+            volList.style.display = 'none',
+            volButton.style.backgroundColor = '#D9EAFF',
+            volButton.style.color = '#2A7DE1'
+            
+        )
+    }
+        
+
  
     return (
     <AdminContainer>
@@ -98,13 +124,15 @@ const AdminDash = (props) => {
             <Navigation />
             <div className="nav-tabs">
                 <div>
-                    <NavLink activeClassName="active" className="tab1" to="/admin/volunteers">Volunteers</NavLink>
+                    <button onClick={showVolunteers} id="tab1" >Volunteers</button>
                 </div>
-                <div >
-                    <NavLink activeClassName="active" className="tab2" to="/admin/students">Students</NavLink></div>
+                <div>
+                    <button onClick={showStudents} id="tab2" >Students</button>
                 </div>
-                <Route path="/admin/volunteers" component={VolunteerList} />
-                <Route path="/admin/students" component={StudentList} />
+            </div>
+                <VolunteerList/>
+                <StudentList />
+                <TrainingForm />
             </div>
     </AdminContainer>
     )

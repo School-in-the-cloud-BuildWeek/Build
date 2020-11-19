@@ -173,6 +173,17 @@ const Container = styled.div`
   }
 `
 const Navigation = () => {
+
+  const showTrainingForm = () => {
+    const tForm = document.getElementById('training-form')
+    if(tForm.style.dispaly === 'none'){
+      tForm.style.dispaly = 'block'
+    }
+    else {
+      tForm.style.display = 'none'
+    }
+  };
+
     return (
     <Container>
         <header className="App-header">
@@ -192,7 +203,7 @@ const Navigation = () => {
                 {/* link to add user/signup form */}
                 <Link className="link" to="/sign-up">Add User</Link>
                 {/* link to add training form */}
-                <Link className="link" to="">Add Training</Link>
+                <button  onClick={showTrainingForm} id='training-button'className="link">Add Training</button>
                 {/* empty link right now add to= when ready*/}
                 <Link className="link" to="" >Library</Link>
                 {/* empty link right now, add to= when ready*/}

@@ -1,12 +1,14 @@
-import React, {useRef} from 'react'
+import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
-import { Link, useHistory } from 'react-router-dom';
-import css from '../index.css'
+import { Link } from 'react-router-dom';
+import '../index.css';
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-import Axios from 'axios';
+
+import axios from 'axios';
+
 
 // Styling
     const Page = styled.div`
@@ -131,15 +133,11 @@ const schema = yup.object().shape({
 
 const SignUp = () => {
 
-    const {register, handleSubmit, setValue, errors, watch} = useForm({
+    const {register, handleSubmit, setValue, errors} = useForm({
         resolver: yupResolver(schema)
       });
 
-    //   const password = useRef({});
-    //     password.current = watch("password", "");
-
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = (user) => {
         setValue("name", "");
         setValue("email", "");
         setValue("phone", "");
@@ -147,31 +145,18 @@ const SignUp = () => {
         setValue("confirmPassword", "")
         setValue("role", "");
 
-        const {name, email, phone, password, role} = data 
 
-        const newData = {name, email, phone, password, role}
-        console.log(newData)
+        const {name, email, phone, password, role} = user 
+        const newUser = {name, email, phone, password, role}
 
-        Axios.post('https://school-in-the-cloud-api.herokuapp.com/api/auth/register', newData)
-        .then(res => {
-            console.log(res)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        axios.post('https://school-in-the-cloud-api.herokuapp.com/api/auth/register', newUser)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
 
-        // data.name = data.name.trim();
-        // data.email = data.email.trim();
-        // data.password = data.password.trim();
+
     } 
 
-    const history = useHistory()
-    const routeToLogin = () => {
-        history.push('/')
-    }
-
-
-
+    
     return (
         <Page>
         <LogoDiv>

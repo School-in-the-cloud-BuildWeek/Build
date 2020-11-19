@@ -219,6 +219,17 @@ const Container = styled.div`
   }
 `
 const Navigation = () => {
+
+  const showTrainingForm = () => {
+    const tForm = document.getElementById('training-form')
+    if(tForm.style.dispaly === 'none'){
+      tForm.style.dispaly = 'block'
+    }
+    else {
+      tForm.style.display = 'none'
+    }
+  };
+
     return (
     <Container>
         <header className="App-header">
@@ -239,7 +250,7 @@ const Navigation = () => {
                 <img className="lg-profilePic" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt=""/>
             </div>
             <div className="side-nav">
-                <div className=" side-nav add-links">
+              <div className=" side-nav add-links">
                     {/* link to add user/signup form */}
                     <Link className="link add add-user" to="/sign-up">Add User</Link>
                     {/* link to add training form */}

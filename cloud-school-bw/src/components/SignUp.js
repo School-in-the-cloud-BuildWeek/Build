@@ -3,20 +3,28 @@ import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import Logo from '../assets/Group.svg'
 import { Link } from 'react-router-dom';
+import '../index.css';
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import axios from 'axios';
+
 
 // Styling
     const Page = styled.div`
-        background-color: #FFFFFF;
+        background-color: #E5E5E5;
         width:100%;
         height:100vh;
         display: flex;
-        flex-flow: column wrap;    
+        justify-content: center;
+        flex-flow: column wrap;   
+        font-family: 'Lato', sans-serif;
+        font-style: normal; 
     `
-
+    
     const StyledHeader = styled.h1`
         font-size: 1.2rem;
         color: #2A7DE1;
-
     `;
 
     const StyledForm = styled.form`
@@ -30,14 +38,16 @@ import { Link } from 'react-router-dom';
         border-radius: 10px;
         box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
         justify-content:space-between;
-        padding-top: 2%;
-        padding-bottom:2%;
+        padding-top: 1%;
+        padding-bottom:1%;
     `;
-    const StyledUserType = styled.div`
+
+    const Styledrole = styled.div`
         display:flex;
         flex-direction:row;
         font-size: 1rem;
-        margin-right:42%;
+        margin-right:25%;
+        width:50%;
     `;
 
     const Button = styled.button`
@@ -65,13 +75,16 @@ import { Link } from 'react-router-dom';
         border:none;
         padding-left:3%;
     `
-
+    
     const Label = styled.label`
-        font-size: 0.8rem;
+        font-size: 0.6rem;
+        width:30%;
     `
+    
     const RadioButtons = styled.input`
         width:6px;
         height:8px;
+        margin-right:4px;
     `
 
     const Errors = styled.span`
@@ -82,14 +95,15 @@ import { Link } from 'react-router-dom';
     `
     const ImgLogo = styled.img`
         width:120px;
-        margin-top:2%;
-        
+        margin-top:2%;  
     `
     const ImgDiv = styled.div `
-        
+        display:flex;
+        justify-content:center;
+        align-content:center;
     `
     const FormDiv = styled.div`
-        margin: auto auto;
+        margin: 2.5% auto;
         width: 350px;
         height: 400px;
     `
@@ -98,31 +112,58 @@ import { Link } from 'react-router-dom';
 //     color: #2A7DE1;
 //     text-decoration:none;
 // `
+
+    const LogoDiv = styled.div`
+        width: 100%;
+    `
+
 // Styling
 
 
+
+
+const schema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().required(),
+    phone: yup.string().required(),
+    password: yup.string().required(),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+    role: yup.string().required(),
+  });
+
 const SignUp = () => {
 
-    const {register, handleSubmit, setValue, errors} = useForm();
+    const {register, handleSubmit, setValue, errors} = useForm({
+        resolver: yupResolver(schema)
+      });
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = (user) => {
         setValue("name", "");
         setValue("email", "");
-        setValue("phoneNumber", "");
+        setValue("phone", "");
         setValue("password", "")
-        setValue("confirmPassword", "");
-        setValue("userType", "");
-        // data.name = data.name.trim();
-        // data.email = data.email.trim();
-        // data.password = data.password.trim();
+        setValue("confirmPassword", "")
+        setValue("role", "");
+
+
+        const {name, email, phone, password, role} = user 
+        const newUser = {name, email, phone, password, role}
+
+        axios.post('https://school-in-the-cloud-api.herokuapp.com/api/auth/register', newUser)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+
+
     } 
 
+    
     return (
         <Page>
-            <ImgDiv>
+        <LogoDiv>
+           <ImgDiv>
            <ImgLogo src = {Logo} alt = 'logo'/>
            </ImgDiv>
+        </LogoDiv>
            <FormDiv>
                <StyledForm onSubmit = {handleSubmit(onSubmit)}>
                <StyledHeader>Sign Up</StyledHeader>
@@ -148,7 +189,7 @@ const SignUp = () => {
 
                         <StyledInput 
                         type="tel"
-                        name="phoneNumber"
+                        name="phone"
                         placeholder = 'Phone Number'
                         ref={register({
                             required: 'Phone Number is required'
@@ -172,18 +213,18 @@ const SignUp = () => {
                         name="confirmPassword"
                         placeholder = 'Confirm Password'
                         ref={register({
-                            required: 'Confirm Password'
+                            required:true
                         })}
                         />
                         {errors.name && <Errors>Please confirm your password</Errors>}
 
                     
-                        <StyledUserType>
+                        <Styledrole>
                         <Label> 
                         <RadioButtons
-                        name="userType" 
+                        name="role" 
                         type="radio"
-                        value="student"
+                        value="2"
                          ref={register({
                             required: 'Please choose student or volunteer' })}
                             />
@@ -192,29 +233,25 @@ const SignUp = () => {
 
                         <Label> 
                         <RadioButtons
-                        name="userType" 
+                        name="role" 
                         type="radio"
-                        value="volunteer"
+                        value="3"
                          ref={register({
                             required: 'Please choose student or volunteer' })}
                             />
                       
                         Volunteer </Label>
                        
-                        </StyledUserType>
-                        {errors.userType && <Errors>Are you a student or volunteer?</Errors>}
+                        </Styledrole>
+                        {errors.role && <Errors>Are you a student or volunteer?</Errors>}
                         <Button type="submit">Sign Up</Button>
                         
                             <FooterText>Already have an account?
-                                <Link to ="/">Log in</Link>
+                                <Link className = 'login' to ="/"> Log in</Link>
                              </FooterText>
-                       
-
-                          
                         </StyledForm>
                         </FormDiv>
         </Page>
     )
 }
-
 export default SignUp

@@ -28,7 +28,6 @@ function App() {
           <Route path="/" component={Login} />
         </Switch>
       </AppContainer>
-
   );
 }
 

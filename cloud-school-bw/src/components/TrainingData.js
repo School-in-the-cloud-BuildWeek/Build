@@ -4,19 +4,17 @@ import styled from 'styled-components'
 import { Accordion, Card } from 'react-bootstrap';
 
 const TrainingCard= styled.div`
-    margin: 0;
     padding: 0;
     display: flex;
     font-family: 'Lato', sans-serif;
-    border: none;
 
 #training-list{
     display: flex;
-    width: 99%;
-    flex-direction: column;
-    flex-wrap: wrap; 
+    width: 100%;
+    flex-flow: row wrap;
     align-content: center;
-    margin: .3rem;
+    margin: 4%;
+    padding-top: 8%;
     height: 100vh;
 }
 h2{
@@ -32,7 +30,7 @@ h2{
     width: 100%;
     box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
     border: none;
-    display: flex;      
+    display: flex;    
 }
 
 .details{
@@ -75,11 +73,11 @@ button{
     
     #training-list{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     max-height: 600px;
     overflow-y: scroll;
     }
+
     h2{
     width: 100%;
     text-align: left;
@@ -89,7 +87,7 @@ button{
     }
     .card-container{
         display: flex;
-        width: 50%;
+        width: 40%;
         margin-top: 3%;
     }
     .card{
@@ -111,8 +109,7 @@ button{
 
     #training-list{
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-flow: row wrap;
     align-content: center;
     justify-content: flex-start; 
     max-height: 670px;
@@ -186,7 +183,7 @@ const TrainingsTable = styled.div`
 `
 
 const TrainingData = (props) => {
-    const [trainings, setTrainings] = useState();
+    const [trainings, setTrainings] = useState([]);
     const [open, setOpen] = useState(false);
     useEffect(() => {
         axiosWithAuth().get('/trainings') 
@@ -205,25 +202,28 @@ const TrainingData = (props) => {
       }
 
 return (
+
+    
     <TrainingCard>
         <div id="training-list">
             <h2>Trainings</h2>
-            <Accordion className="card-container" defaultActiveKey="0">
+        {trainings.map(training => (
+            <Accordion className="card-container" defaultActiveKey="0" key={training.id}>
                 <Card className= "card">
-                    <Card.Title className="title">{trainings.name}Training Name</Card.Title>
+                    <Card.Title className="title">{training.name}</Card.Title>
                     <Accordion.Toggle className="details" as={Card.Header} 
                     eventKey= "1" onClick={() => setOpen(!open)}>
                     -Details- {open ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey= "1">
                         <Card.Body className="cardBody" bg-transparent>
-                            <p>Training Details {trainings.location}</p>
+                            <p>{training.notes}</p>
                             <button>Mark Complete</button>
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
             </Accordion>
-        
+        ))};
             <TrainingsTable className="trainings-small-table">
                 <div className="completed-trainings">
                     <h2>Completed Trainings</h2>

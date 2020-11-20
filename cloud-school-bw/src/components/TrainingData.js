@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components'
 import { Accordion, Card } from 'react-bootstrap';
 
@@ -158,11 +158,10 @@ const TrainingData = (props) => {
     const [trainings, setTrainings] = useState();
     const [open, setOpen] = useState(false);
     useEffect(() => {
-        axios
-        .get('https://randomuser.me/api/?results=10') 
+        axiosWithAuth().get('/trainings') 
         .then(response => {
-          console.log(response.data.results);
-          setTrainings(response.data.results)
+          console.log(response.data.data);
+            setTrainings(response.data.data)
         })
         .catch(error => {
           console.error(error);

@@ -27,7 +27,7 @@ function App() {
           <Route path= "/VolunteerDash" component={VolunteerDash} />
           <Route path= "/StudentDash" component={StudentDash} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/" component={Login} /> */}
+          <Route path="/" component={Login} /> */
           {/* <Route path="#" component={VolunteerForm} /> */}
           <VolunteerForm/>
         </Switch>

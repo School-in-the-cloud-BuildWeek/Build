@@ -2,102 +2,104 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components';
 import '../index.css';
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const TrainingContainer = styled.div`
-
-#training-form {
-    display: none;
+    display:none; 
     position: absolute;
-    width: 640px;
-    height: 360px;
-    left: 400px;
-    top: 333px;
-    z-index: 9;
+    width: 100%;
+    height: 100vh;
+    background: rgba(135, 141, 149, 0.75);
+    z-index:9;   
+    
+    border:1px solid purple;
 
-    background: #FAFAFB;
-    box-shadow: 0px 30px 60px -40px rgba(8, 46, 91, 0.49);
-    border-radius: 10px;    
-}`
+    .close{
+        font-size:14px;
+        margin:3% 5%;
+        border: none;
 
-const Form = styled.form` 
-    position: absolute;
-    width: 640px;
-    height: 360px;
-    left: 400px;
-    top: 333px;
+    }
 
-    background: #FAFAFB;
-    box-shadow: 0px 30px 60px -40px rgba(8, 46, 91, 0.49);
-    border-radius: 10px;    
-`
+    .training-form {
+        width: 640px;
+        height: 360px;
+        left: 400px;
+        top: 333px;
 
-const TrainingTitle = styled.h3` 
-    position: absolute;
-    width: 145px;
-    height: 24px;
-    left: 430px;
-    top: 353px;
+        background: #F4F6F7;
+        box-shadow: 0px 30px 60px -40px rgba(8, 46, 91, 0.49);
+        border-radius: 10px;
+        margin: auto auto; 
+    }
 
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 10px;
-    line-height: 24px;  
+    .training-title{
+        width: 200px;
+        height: 24px;
+        margin: 3% 5% 1.5%;
+       
 
-    letter-spacing: 3px;
-    text-transform: uppercase;
+        font-family: 'Lato', sans-serif;
+        font-weight: 900;
+        font-size: 10px;
+        line-height: 24px;  
 
-    color: #25476E;
-` 
+        letter-spacing: 3px;
+        text-transform: uppercase;
 
-const CourseInput = styled.input`
-    position: absolute;
-    left: 29.86%;
-    right: 30.07%;
-    top: 38.77%;
-    bottom: 56.35%;
+        color: #25476E;
+    }
 
-    background: #F4F6F7;
-    border-radius: 3px;
-`
+    .course-input{
+        width: 577px;
+        height: 50px;
+        border-radius:3px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 24px;
+        border-radius: 3px;
+        margin: 1.5% 4.75%;
+        border:1px solid #E8E8E8;
+    }
 
-const NotesInput = styled.input`
-    position: absolute;
-    left: 29.86%;
-    right: 30.07%;
-    top: 45.61%;
-    bottom: 41.99%;
+    .notes-input{
+        width: 577px;
+        height: 127px;
+        border-radius: 3px;
+        margin: 1.5% 4.75%;
+        vertical-align: top;
 
-    background: #F4F6F7;
-    border-radius: 3px;
-`
-const ConfirmButton = styled.button`
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
 
-    background: #2A7DE1;
-    border-radius: 100px;
-`
 
-const ButtonText = styled.p`
-position: absolute;
-height: 22px;
-left: 25px;
-right: 25px;
-top: calc(50% - 22px/2 + 0.5px);
+        background: #F4F6F7;
+        border-radius: 3px;
+        border:1px solid #E8E8E8;
+    }
 
-font-family: Fira Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 18px;
-line-height: 22px;
+    .training-button{
+        width: 580px;
+        height: 47px;
+        border-radius: 100px;
+        margin: 1.5% 4.5%;
+        border: none;
 
-text-align: center;
-color: #FFFFFF;
+        background: #2A7DE1;
+        
+    
+    }
+
+    .training-confirm{
+        height: 22px;
+        font-family: 'Fira Sans', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        margin: 1.3% 5%;
+
+        color: #FFFFFF;
+    }   
 `
 
 const Errors = styled.span`
@@ -112,47 +114,83 @@ export default function TrainingForm() {
 
     const {register, handleSubmit, setValue, errors} = useForm()
 
-    const onSubmit = (training) => {
-        setValue("course", "");
-        setValue("notes", "");
+    const toggleTForm = () => {
+        const trainingForm = document.getElementById('training-section')
+        if(trainingForm.style.display === 'none'){
+            trainingForm.style.display = 'flex'
+        }else {
+            trainingForm.style.display = 'none'
+        }
+    }
 
-        axios.post('https://school-in-the-cloud-api.herokuapp.com/api/trainings', training)
-        .then(res => console.log(res))
+    const onSubmit = (training) => {
+        const { name, notes } = training
+        const trainingForm = document.getElementById('training-section')
+        
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        const tdate = mm + '-' + dd + '-' + yyyy;
+        const date = tdate
+
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var ctime = hours + ':' + minutes + ampm;
+        const time = ctime
+        
+        var user_id = 1;
+
+        const newTraining = { name, date, time, notes, user_id  }
+        console.log(newTraining)
+        axiosWithAuth().post('/trainings', newTraining)
+        .then(res => {console.log(res.data)
+        setValue('name', '')
+        setValue('notes', '')
+        trainingForm.style.display = 'none'
+        })
         .catch(err => console.log(err))
     } 
     
     
     
     return(
-        <TrainingContainer>
-        <div id='training-form'>
-            <Form onSubmit = {handleSubmit(onSubmit)}>
-                <TrainingTitle>Create a Training</TrainingTitle>
-                <CourseInput
+        <TrainingContainer id='training-section'>
+            <form className='training-form' onSubmit = {handleSubmit(onSubmit)}>
+                <button className='close' onClick={toggleTForm}>&#10005;</button>
+                <h3 className='training-title'>Create a Training</h3>
+                <input
+                    className='course-input'
                     type='text'
-                    name='course'
-                    placeholder='Courses'
+                    name='name'
+                    placeholder=' Courses'
                     ref={register({
                         required: 'Course name is required'
                     })}
                     />
                     {errors.course && <Errors>Please add a course name</Errors>}
 
-                    <NotesInput
+                    <input
+                        className='notes-input'
                         type='text'
                         name='notes'
-                        placeholder='Notes/Comments'
+                        placeholder=' Notes/Comments'
+                        heitht="147"
                         ref={register({
                             required: 'Course comments are required'
                         })}
                     />
                     {errors.notes && <Errors>Please add course notes</Errors>}
 
-                    <ConfirmButton type='submit'>
-                        <ButtonText>Confirm</ButtonText>
-                    </ConfirmButton>
-            </Form>
-        </div>
+                    <button className='training-button' type='submit'>
+                        <p className='training-confirm'>Confirm</p>
+                    </button>
+            </form>
         </TrainingContainer>
     )
 }

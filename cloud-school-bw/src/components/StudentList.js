@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components'
 
 const StudentTable= styled.div`
@@ -55,7 +55,7 @@ const StudentTable= styled.div`
         width: 65%;
         max-height: 668px;
         #student-list{
-            display: flex;
+            display: none;
             flex-direction: row;
             flex-wrap: wrap;
             height:80vh;
@@ -71,7 +71,7 @@ const StudentTable= styled.div`
         margin-top: 11rem;
         
         #student-list{
-            display: flex;
+            display: none;
             flex-direction: column;
             flex-wrap: wrap;
             height:80vh;
@@ -93,11 +93,10 @@ const StudentList = (props) => {
     const [students, setStudents] = useState();
     
     useEffect(() => {
-        axios
-        .get('https://randomuser.me/api/?results=10') 
-        .then(response => {
-          console.log(response);
-          setStudents(response.data.results)
+        axiosWithAuth().get('/users/students') 
+        .then(res => {
+          console.log(res);
+          setStudents(res.data.data.students)
         })
         .catch(error => {
           console.error(error);
@@ -116,6 +115,8 @@ const StudentList = (props) => {
     //         setVolunteers(del)
     //     })
 
+
+
     return (
         <StudentTable>
         <div id="student-list">
@@ -132,16 +133,16 @@ const StudentList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {students.map(vol => (
-                        <tr className="border-bottom" key={vol.cell}>
+                    {students.map(student => (
+                        <tr className="border-bottom" key={student.id}>
 
-                            <td>{vol.name.first} {vol.name.last}</td>
+                            <td>{student.name}</td>
                             <td>
                                 <button>Email</button>
                                 {/* <a className="mailto" href={`mailto:${vol.email}`}>eMail</a> */}
                             </td>
-                            <td>{vol.phone}</td>
-                            <td>{vol.location.country}</td>
+                            <td>{student.phone}</td>
+                            <td>USA</td>
                             <td className="delete">
                                 <button>X</button>
                                 {/* <button onClick={() => removeData(vol.cell)}>Delete</button> */}

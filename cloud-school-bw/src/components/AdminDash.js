@@ -7,19 +7,14 @@ import TrainingForm from './TrainingForm';
 
 
 const AdminContainer = styled.div`
-    /* display: flex; */
     margin: 0;
     padding: 0;
-    /* width: 100%;
-    height: 100vh; */
     
-    
-    border: 1px blue solid;
 /* body space */
-    .body-wrapper{
+    /* .body-wrapper{
         background: #E5E5E5;
         width: 100%;
-    }
+    } */
     .body-container{
         height: 100vh;
         display: flex;
@@ -93,9 +88,6 @@ const AdminContainer = styled.div`
 `
 
 const AdminDash = (props) => {
-    
-
-    
     const showVolunteers = () => {
         const studList = document.getElementById('student-list');
         const volList = document.getElementById('volunteer-list');

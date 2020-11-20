@@ -14,7 +14,7 @@ const TrainingCard= styled.div`
     flex-flow: row wrap;
     align-content: center;
     margin: 3%;
-    padding-top: 13%;
+    padding-top: 15%;
     height: 100vh;
     overflow-y: scroll;
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import logo from '../assets/logo.svg';
 
 const Container = styled.div`
@@ -233,7 +233,10 @@ const Container = styled.div`
     left: 0;
     width: 10%;
     text-align: left;
+    border: none;
+    background-color: #F4F6F7;
     }
+
   .link{
       margin-top: 1.4rem;
     }
@@ -242,6 +245,8 @@ const Container = styled.div`
 
 
 const Navigation = () => {
+
+  const history = useHistory();
   
   const toggleTForm = () => {
     const trainingForm = document.getElementById('training-section')
@@ -250,6 +255,12 @@ const Navigation = () => {
     }else {
         trainingForm.style.display = 'none'
     }
+}
+
+const logout = () => {
+  localStorage.setItem(null)
+  localStorage.clear();
+  history.push('/');
 }
 
 
@@ -291,7 +302,7 @@ const Navigation = () => {
             </div>
             <div className="logout">
                 {/* link to logout user */}
-                <Link className="log-out" to="">Log Out</Link>
+                <button onClick={logout} className="log-out" >Log Out</button>
             </div>
         </div>
     </Container>

@@ -119,6 +119,9 @@ const Container = styled.div`
   .lg-profilePic{
     display: none;
   }
+  button{
+    border: none;
+  }
 
   @media (min-width: 768px){
 
@@ -166,7 +169,7 @@ const Container = styled.div`
     background: #F4F6F7;
     height: 100vh;
     position: fixed;
-    margin-top: 9.5%;
+    margin-top: 12.4%;
   }
 
   .link{
@@ -237,6 +240,7 @@ const Container = styled.div`
   }
 `
 
+
 const Navigation = () => {
   
   const toggleTForm = () => {
@@ -247,6 +251,7 @@ const Navigation = () => {
         trainingForm.style.display = 'none'
     }
 }
+
 
     return (
     <Container>
@@ -273,18 +278,15 @@ const Navigation = () => {
                     <Link className="link add add-user" to="/sign-up">Add User</Link>
 
                     {/* link to add training form */}
-                    <button id='add-training' className="link add add-training" onClick={toggleTForm} >Add Training</button>
-                    
 
-                    {/* empty link right now add to= when ready*/}
-                    <Link className="link add" to="" >Library</Link>
-                    {/* empty link right now, add to= when ready*/}
-                    <Link className="link add" to="">Help</Link>
+                    <button id='add-training' className="link add add-training" onClick={toggleTForm} >Add Training</button>
+                    <button className="link add ">Library</button>
+                    <button className="link add ">Help</button>
                     <hr></hr>
               </div>
                 <div className="side-nav dash-link">
                     <Link className="link dash volunteer-dash" to="/VolunteerDash">Volunteer Dashboard</Link>
-                    <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
+                    <Link className="link dash student-dash" to="/StudentDash">Student Dashboard</Link>
                 </div>  
             </div>
             <div className="logout">

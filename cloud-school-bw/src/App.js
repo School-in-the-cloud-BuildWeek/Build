@@ -16,20 +16,18 @@ const AppContainer = styled.div`
   height: 100%;
 `
 
-
 function App() {
 
   return (
       <AppContainer className="App">
         <Switch>
-
           <Route path="/admin" component={AdminDash} />
           <Route path= "/VolunteerDash" component={VolunteerDash} />
           <Route path= "/StudentDash" component={StudentDash} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/" component={Login} /> */
           {/* <Route path="#" component={VolunteerForm} /> */}
-          <VolunteerForm/>
+          {/* <VolunteerForm/> */}
         </Switch>
       </AppContainer>
   );

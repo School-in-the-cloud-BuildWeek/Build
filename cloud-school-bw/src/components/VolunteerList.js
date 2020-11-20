@@ -54,11 +54,12 @@ const VolunteerTable= styled.div`
         margin-left: 16rem; 
         width: 65%;
         max-height: 668px;
+        
         #volunteer-list{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            height:80vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height:80vh;
         }
         h2{
             width: 100%;

@@ -6,11 +6,25 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 //Styling
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
     display:flex;
     flex-direction:column;
     width:80%;
     font-size:0.6rem;
+    height:50vh;
+    justify-content:space-between;
+    /* background-color: white;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        position: absolute;
+        width: 350px;
+        height: 400px;
+        border-radius: 10px;
+        box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
+        justify-content:space-between;
+        padding-top: 1%;
+        padding-bottom:1%; */
 `
 
 const FormDiv = styled.div`
@@ -22,21 +36,22 @@ const FormDiv = styled.div`
     background: white;
     border-radius:10px;
     margin-top:10%;
+    
     `
 
 const Input = styled.input`
     height: 5vh;
-    margin-bottom:5%;
     background: #F4F6F7;
     border:none;
     color: #082E5B;
     padding-left:3%;
+    
 `
 
 const Header = styled.h2`
     font-size:1rem;
     text-align:center;
-    margin-bottom:14%;
+    margin-bottom:5%;
 `
 
 const FormContainer = styled.div`

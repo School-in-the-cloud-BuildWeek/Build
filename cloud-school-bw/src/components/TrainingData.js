@@ -55,6 +55,7 @@ h2{
     padding:3%;
     text-align: center;
 }
+
 button{
     border-color: #2A7DE1;
     color: #2A7DE1;

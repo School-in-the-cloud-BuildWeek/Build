@@ -1,9 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.svg';
-import Modal from 'react-modal';
-import TrainingForm from './TrainingForm';
 
 const Container = styled.div`
   width: 100%;
@@ -84,6 +82,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
   }
+
+  #add-training{
+    border: none;
+  }
+
   .dash{
     color:#D9EAFF;
     background-color: #2A7DE1;
@@ -239,7 +242,16 @@ const Container = styled.div`
 
 
 const Navigation = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  
+  const toggleTForm = () => {
+    const trainingForm = document.getElementById('training-section')
+    if(trainingForm.style.display === 'none'){
+        trainingForm.style.display = 'flex'
+    }else {
+        trainingForm.style.display = 'none'
+    }
+}
+
 
     return (
     <Container>
@@ -266,7 +278,8 @@ const Navigation = () => {
                     <Link className="link add add-user" to="/sign-up">Add User</Link>
 
                     {/* link to add training form */}
-                    <button className="link add add-training" onClick={() => setModalIsOpen(true)} >Add Training</button>
+
+                    <button id='add-training' className="link add add-training" onClick={toggleTForm} >Add Training</button>
                     <button className="link add ">Library</button>
                     <button className="link add ">Help</button>
                     <hr></hr>
@@ -281,19 +294,6 @@ const Navigation = () => {
                 <Link className="log-out" to="">Log Out</Link>
             </div>
         </div>
-        <div className="modal-bg">
-                <Modal isOpen={modalIsOpen} onResquestClose={() => setModalIsOpen(false)}>
-                  <TrainingForm />
-                      {/* <h2>Create A Training</h2>
-                        <label for="name">Training Name:</label>
-                          <input type="text" name="name"></input>
-                        <label for="training-details">Training Details</label>
-                          <input type="text" name="details"></input> */}
-                          {/* <button>Create</button> */}
-                      <button  onClick={() => setModalIsOpen(false)}>X</button>
-                    
-                </Modal>
-          </div>
     </Container>
     )
 }

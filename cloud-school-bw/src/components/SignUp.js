@@ -82,8 +82,8 @@ import axios from 'axios';
     `
     
     const RadioButtons = styled.input`
-        width:6px;
-        height:8px;
+        width:8px;
+        height:12px;
         margin-right:4px;
         font-size:1.2rem;
     `

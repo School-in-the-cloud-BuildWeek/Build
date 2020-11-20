@@ -4,52 +4,56 @@ import styled from 'styled-components'
 import { Accordion, Card } from 'react-bootstrap';
 
 const AvailabilityCard= styled.div`
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    border: none;
     position: absolute;
-    text-align: center;
-    /* border: red solid 1px; */
-    width: 100%;
-    background-color: #FAFAFB;
-    height: 75%;
+    display: flex;
+    margin-top: 15%;
 
-.card-container{
-    margin:2%;
-    /* border: solid red 1px; */
-}
-.card{
+    .card-container{
+    margin-top: 2%;
+    }
+
+    .card{
     background-color: #D9EAFF;
     font-family: 'Lato', sans-serif;
     width: 100%;
     box-shadow: -.2em 0 .5em rgba(0, 0, 0, 0.2);
-}
+    border: none;
+    display: flex;      
+    }
 
-.availability{
+    .availability{
     font-size: 1.3rem;
     color: #FAFAFB;
     font-family: 'Lato', sans-serif;
     cursor: pointer;
     background-color: #2A7DE1;
-   
-}
-.cardBody{
+    }
+
+    .cardBody{
     background-color: white;
     font-size: 1.4rem; 
     font-size: 1.2rem;
-}
+    }
 
-.title{
+    .title{
     font-family: 'Lato', sans-serif;
     font-size: 1.8rem;
     color: #2A7DE1;
     padding:4%;
-}
+    }
 
-.sub-title{
+    .sub-title{
     font-family: 'Lato', sans-serif;
     font-size: 1.2rem;
     color: black;
     padding:4%;
-}
-button{
+    }
+
+    button{
     border-color: #2A7DE1;
     color: #2A7DE1;
     background-color: #D9EAFF;
@@ -57,69 +61,65 @@ button{
     margin-left: .5rem;
     border-radius: 5px;
     font-size: 1.1rem;
-}
+    }
+
 @media (min-width: 768px){
-        position: absolute;
-        margin-top: 9.5rem;
-        margin-left: 15rem; 
-        width: 68%;
-        height: 83%;
-        border-radius: 2px;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
+    position: absolute;
+    margin-top: 4rem;
+    margin-left: .5rem; 
+    width: 65%;
+    max-height: 668px;
     
     .card-container{
-        display: flex;
-        flex-direction: row;
-}
+    display: flex;
+    flex-direction: row;
+    }
     .card{
-        width: 100%;
-        margin-top: 4%;
-}
+    width: 100%;
+    margin-top: 4%;
+    }
     .availability{
-        font-size: 1.2rem;
+    font-size: 1.2rem;
     }
 
     .title{
-        font-size: 1.5rem;
+    font-size: 1.5rem;
     }
 }
 @media (min-width: 1024px){
-        margin-top: 10.6rem;
-        margin-left: 16rem; 
-        width: 72%;
-        height: 80%;
-        border-radius: 2px;
-        justify-content: flex-start;
+    margin-top: 4rem;
+    margin-left: 5rem; 
+    width: 72%;
+    height: 80%;
+    border-radius: 2px;
+    justify-content: flex-start;
 
-        .card-container{
-        width: 40%;
-        display: flex;
-        align-content: center;
-        justify-content: flex-start;
-        margin-top: 2%;
-}
-        .card{
-            width: 100%;
-            margin-top: 4%;
+    .card-container{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    margin-top: 2%;
     }
-        .availability{
-            font-size: 1.2rem;
-        }
+    .card{
+    width: 100%;
+    margin-top: 4%;
+    }
+    .availability{
+    font-size: 1.2rem;
+    }
 
-        .title{
-            font-size: 2.5rem;
-            width: 100%;
-        }
+    .title{
+    font-size: 2.5rem;
+    width: 100%;
+    }
 }
 `
 const Error= styled.div`
-         @media (min-width: 768px){
-        position: absolute;
-        margin-top: 12rem;
-        margin-left: 16rem; 
+    @media (min-width: 768px){
+    position: absolute;
+    margin-top: 12rem;
+    margin-left: 16rem; 
   }
 `
 
@@ -145,6 +145,7 @@ const AvailabilityData = (props) => {
 
 return (
     <AvailabilityCard>
+        <div>
         <div className="card-container">
             <Accordion defaultActiveKey="0">
                 <Card className= "card">
@@ -167,6 +168,7 @@ return (
                     </Accordion.Collapse>
                 </Card>
             </Accordion>
+        </div>
         </div>
     </AvailabilityCard> 
 )

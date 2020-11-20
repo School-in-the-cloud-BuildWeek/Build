@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.svg';
 import Modal from 'react-modal';
+import TrainingForm from './TrainingForm';
 
 const Container = styled.div`
   width: 100%;
@@ -115,6 +116,9 @@ const Container = styled.div`
   .lg-profilePic{
     display: none;
   }
+  button{
+    border: none;
+  }
 
   @media (min-width: 768px){
 
@@ -162,7 +166,7 @@ const Container = styled.div`
     background: #F4F6F7;
     height: 100vh;
     position: fixed;
-    margin-top: 9.5%;
+    margin-top: 12.4%;
   }
 
   .link{
@@ -232,65 +236,10 @@ const Container = styled.div`
     }
   }
 `
-const ModalContainer =styled.div`
-.modal-bg{
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        background-color: rgba(0,0,0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s opacity 0.5s;
-    }
-    .bg-active{
-        visibility: visible;
-        opacity: 1;
-    }
 
-    .modal{
-        position: relative;
-        background-color: white;
-        width: 30%;
-        height: 30%;
-        display: flex;
-        justify-content: space-around;
-        align-content: center;
-        flex-direction: column;
-        font-family: 'Lato', sans-serif;
-    } 
-
-    .modal button{
-        border-color: #2A7DE1;
-        color: #2A7DE1;
-        background-color: #D9EAFF;
-        border-radius: 38px;
-        font-family: 'Lato', sans-serif;
-    }
-    .modal-close{
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-`
 
 const Navigation = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  // const showTrainingForm = () => {
-  //   const tForm = document.getElementById('training-form')
-  //   if(tForm.style.dispaly === 'none'){
-  //     tForm.style.dispaly = 'block'
-  //   }
-  //   else {
-  //     tForm.style.display = 'none'
-  //   }
-  // };
 
     return (
     <Container>
@@ -318,17 +267,13 @@ const Navigation = () => {
 
                     {/* link to add training form */}
                     <button className="link add add-training" onClick={() => setModalIsOpen(true)} >Add Training</button>
-                    
-
-                    {/* empty link right now add to= when ready*/}
-                    <Link className="link add" to="" >Library</Link>
-                    {/* empty link right now, add to= when ready*/}
-                    <Link className="link add" to="">Help</Link>
+                    <button className="link add ">Library</button>
+                    <button className="link add ">Help</button>
                     <hr></hr>
               </div>
                 <div className="side-nav dash-link">
                     <Link className="link dash volunteer-dash" to="/VolunteerDash">Volunteer Dashboard</Link>
-                    <Link className="link dash" to="/StudentDash">Student Dashboard</Link>
+                    <Link className="link dash student-dash" to="/StudentDash">Student Dashboard</Link>
                 </div>  
             </div>
             <div className="logout">
@@ -336,18 +281,19 @@ const Navigation = () => {
                 <Link className="log-out" to="">Log Out</Link>
             </div>
         </div>
-        <ModalContainer className="modal-bg">
+        <div className="modal-bg">
                 <Modal isOpen={modalIsOpen} onResquestClose={() => setModalIsOpen(false)}>
-                      <h2>Create A Training</h2>
+                  <TrainingForm />
+                      {/* <h2>Create A Training</h2>
                         <label for="name">Training Name:</label>
                           <input type="text" name="name"></input>
                         <label for="training-details">Training Details</label>
-                          <input type="text" name="details"></input>
-                          <button>Create</button>
+                          <input type="text" name="details"></input> */}
+                          {/* <button>Create</button> */}
                       <button  onClick={() => setModalIsOpen(false)}>X</button>
                     
                 </Modal>
-          </ModalContainer>
+          </div>
     </Container>
     )
 }

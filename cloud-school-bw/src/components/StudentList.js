@@ -55,7 +55,7 @@ const StudentTable= styled.div`
         width: 65%;
         max-height: 668px;
         #student-list{
-            display: flex;
+            display: none;
             flex-direction: row;
             flex-wrap: wrap;
             height:80vh;
@@ -71,7 +71,7 @@ const StudentTable= styled.div`
         margin-top: 11rem;
         
         #student-list{
-            display: flex;
+            display: none;
             flex-direction: column;
             flex-wrap: wrap;
             height:80vh;

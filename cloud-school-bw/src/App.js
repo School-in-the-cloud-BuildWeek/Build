@@ -6,8 +6,8 @@ import Login from './components/Login'
 import styled from 'styled-components'
 import VolunteerDash from './components/VolunteerDash'
 import StudentDash from './components/StudentDash'
-import VolunteerForm from './components/VolunteerForm'
 import "bootstrap/dist/css/bootstrap.css";
+import PrivateRoute from './utils/PrivateRoute';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -21,9 +21,9 @@ function App() {
   return (
       <AppContainer className="App">
         <Switch>
-          <Route path="/admin" component={AdminDash} />
-          <Route path= "/VolunteerDash" component={VolunteerDash} />
-          <Route path= "/StudentDash" component={StudentDash} />
+          <PrivateRoute path="/admin" component={AdminDash} />
+          <PrivateRoute path= "/VolunteerDash" component={VolunteerDash} />
+          <PrivateRoute path= "/StudentDash" component={StudentDash} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/" component={Login} /> */
           {/* <Route path="#" component={VolunteerForm} /> */}

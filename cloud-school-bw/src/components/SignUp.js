@@ -111,7 +111,7 @@ import axios from 'axios';
 
     const LogoDiv = styled.div`
         width: 100%;
-        margin-top: 8%;
+        margin-top: 3%;
     `
 
 // Styling

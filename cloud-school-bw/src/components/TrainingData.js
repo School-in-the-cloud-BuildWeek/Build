@@ -4,18 +4,19 @@ import styled from 'styled-components'
 import { Accordion, Card } from 'react-bootstrap';
 
 const TrainingCard= styled.div`
-    padding: 0;
-    display: flex;
-    font-family: 'Lato', sans-serif;
+   contain: content;
+    
+    
 
 #training-list{
     display: flex;
     width: 100%;
     flex-flow: row wrap;
     align-content: center;
-    margin: 4%;
-    padding-top: 8%;
+    margin: 3%;
+    padding-top: 13%;
     height: 100vh;
+    overflow-y: scroll;
 }
 h2{
     color: #2A7DE1;
@@ -114,6 +115,7 @@ button{
     align-content: center;
     justify-content: flex-start; 
     max-height: 670px;
+    overflow-y: scroll;
     }
     h2{
     margin-bottom: 0;
@@ -199,7 +201,7 @@ const TrainingData = (props) => {
 
 
     if (!trainings) {
-        return <Error className="error">Loading Training information...</Error>;
+        return <Error className="error">Loading Training information...</Error>
       }
 
 return (
@@ -224,7 +226,7 @@ return (
                     </Accordion.Collapse>
                 </Card>
             </Accordion>
-        ))};
+        ))}
             <TrainingsTable className="trainings-small-table">
                 <div className="completed-trainings">
                     <h2>Completed Trainings</h2>

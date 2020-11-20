@@ -33,6 +33,7 @@ const VolunteerContainer = styled.div`
         text-align: center;
         height: 6vh;
         border: none;
+        position: fixed;
     }
     /* training tab */
     #tab1{

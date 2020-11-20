@@ -258,8 +258,7 @@ const Navigation = () => {
 }
 
 const logout = () => {
-  localStorage.setItem(null)
-  localStorage.clear();
+  localStorage.setItem('token', null )
   history.push('/');
 }
 

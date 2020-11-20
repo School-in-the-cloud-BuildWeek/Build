@@ -62,6 +62,7 @@ const AdminContainer = styled.div`
         .user-wrapper{
             display: flex;
             flex-direction: row;
+
             
         }
         .nav-tabs{

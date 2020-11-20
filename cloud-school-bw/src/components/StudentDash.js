@@ -75,19 +75,19 @@ const VolunteerContainer = styled.div`
 
 const StudentDash = (props) => {
     
-    const showAvailability = () => {
-        const avbList = document.getElementById('avb-list');
-        const avbButton = document.getElementById('tab1');
+    // const showAvailability = () => {
+    //     const avbList = document.getElementById('avb-list');
+    //     const avbButton = document.getElementById('tab1');
        
 
-        return (
+    //     return (
             
-            avbList.style.display = 'flex',
-            avbButton.style.backgroundColor = '#2A7DE1',
-            avbButton.style.color = '#D9EAFF'
+    //         avbList.style.display = 'flex',
+    //         avbButton.style.backgroundColor = '#2A7DE1',
+    //         avbButton.style.color = '#D9EAFF'
             
-        )
-    }
+    //     )
+    // }
     return (
     <VolunteerContainer>
         

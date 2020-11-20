@@ -41,7 +41,7 @@ import axios from 'axios';
         padding-bottom:1%;
     `;
 
-    const Styledrole = styled.div`
+    const StyledRole = styled.div`
         display:flex;
         flex-direction:row;
         font-size: 1.2rem;
@@ -218,7 +218,7 @@ const SignUp = () => {
                         {errors.name && <Errors>Please confirm your password</Errors>}
 
                     
-                        <Styledrole>
+                        <StyledRole>
                         <Label > 
                         <RadioButtons
                         name="role" 
@@ -241,7 +241,7 @@ const SignUp = () => {
                       
                         Volunteer </Label>
                        
-                        </Styledrole>
+                        </StyledRole>
                         {errors.role && <Errors>Are you a student or volunteer?</Errors>}
                         <Button type="submit">Sign Up</Button>
                         

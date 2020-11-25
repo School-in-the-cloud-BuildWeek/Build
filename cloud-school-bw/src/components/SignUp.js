@@ -8,8 +8,6 @@ import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
  
-
-
 // Styling
     const Page = styled.div`
         background-color: #E5E5E5;
@@ -154,7 +152,6 @@ const SignUp = () => {
             })
         .catch(err => console.log(err))   
     } 
-
     
     return (
         <Page>

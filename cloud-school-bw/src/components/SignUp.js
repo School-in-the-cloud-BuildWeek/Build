@@ -8,8 +8,6 @@ import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
  
-
-
 // Styling
     const Page = styled.div`
         background-color: #E5E5E5;
@@ -154,7 +152,6 @@ const SignUp = () => {
             })
         .catch(err => console.log(err))   
     } 
-
     
     return (
         <Page>
@@ -171,7 +168,7 @@ const SignUp = () => {
                         name="name"
                         placeholder = 'Name'
                         ref={register({
-                            required: 'Name is required'
+                            required: 'Your name is required'
                         })}
                         />
                         {errors.name && <Errors>Please enter your name</Errors>}
@@ -181,7 +178,7 @@ const SignUp = () => {
                         name="email"
                         placeholder = 'Email Address'
                         ref={register({
-                            required: 'Email is required'
+                            required: 'Your email is required'
                         })}
                         />
                         {errors.email && <Errors>Please enter your email</Errors>}
@@ -191,7 +188,7 @@ const SignUp = () => {
                         name="phone"
                         placeholder = 'Phone Number'
                         ref={register({
-                            required: 'Phone Number is required'
+                            required: 'Your phone Number is required'
                         })}
                         />
                         {errors.name && <Errors>Please enter your phone number</Errors>}
@@ -254,3 +251,5 @@ const SignUp = () => {
     )
 }
 export default SignUp
+//test
+//test

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components'
 
 const VolunteerTable= styled.div`
@@ -54,15 +54,16 @@ const VolunteerTable= styled.div`
         margin-left: 16rem; 
         width: 65%;
         max-height: 668px;
+        
         #volunteer-list{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            height:80vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height:80vh;
         }
         h2{
             width: 100%;
-            text-align: left;
+            text-align: center;
             font-size: 1.8rem;
         }
   }
@@ -94,11 +95,10 @@ const VolunteerList = (props) => {
     const [volunteers, setVolunteers] = useState();
     
     useEffect(() => {
-        axios
-        .get('https://randomuser.me/api/?results=10') 
-        .then(response => {
-          console.log(response.data.results);
-          setVolunteers(response.data.results)
+        axiosWithAuth().get('/users/volunteers') 
+        .then(res => {
+          console.log(res.data.data.volunteers);
+          setVolunteers(res.data.data.volunteers);
         })
         .catch(error => {
           console.error(error);
@@ -135,14 +135,14 @@ return (
                 </thead>
                 <tbody>
                     {volunteers.map(vol => (
-                        <tr className="border-bottom" key={vol.cell}>
-                            <td>{vol.name.first} {vol.name.last}</td>
+                        <tr className="border-bottom" key={vol.id}>
+                            <td>{vol.name}</td>
                             <td>
                                 <button>EMail</button>
                                 {/* <a className="mailto" href={`mailto:${vol.email}`}>eMail</a> */}
                             </td>
                             <td>{vol.phone}</td>
-                            <td>{vol.location.country}</td>
+                            <td>USA</td>
                             <td className="delete">
                                 <button>X</button>
                                 {/* <button onClick={() => removeData(vol.cell)}>Delete</button> */}
